@@ -1,0 +1,13 @@
+; Engine configuration file.
+; MONOLITH project foundation.
+
+config_version=5
+
+[application]
+
+config/name="MONOLITH"
+
+[rendering]
+
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="forward_plus"

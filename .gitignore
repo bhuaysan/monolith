@@ -1,0 +1,11 @@
+# Godot 4 generated editor, import, and cache data
+.godot/
+
+# Godot 3 compatibility import data
+.import/
+
+# Godot .NET/Mono generated data, if enabled later
+.mono/
+
+# Generated localization import artifacts
+*.translation
