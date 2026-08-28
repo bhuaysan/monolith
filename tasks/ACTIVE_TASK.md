@@ -1,6 +1,35 @@
-# ACTIVE TASK — Define First Playable Area Layout
+# ACTIVE TASK — Plan First Playable Production Greybox
 
-**Status:** DELIVERABLE COMPLETE — pending Orchestrator review (2026-08-28). `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` has been written; documentation/design work for this task is **complete**. **No implementation of the layout has started** — no production greybox, scenes, scripts, assets, or project-settings work may begin until the Orchestrator reviews and approves the layout. Do not advance to another task.
+**Status:** DELIVERABLE COMPLETE — pending Orchestrator review (2026-08-29). `docs/PRODUCTION_GREYBOX_PLAN.md` has been written; documentation/planning work for this task is **complete**. **No implementation is authorized** — no Phase 0 work, no scenes, scripts, assets, or project-settings changes may begin until the Orchestrator reviews and approves the plan. Each approved phase (0–5) will then stop for review before the next begins.
+
+## Specification
+
+**Type:** Documentation / planning only. No Godot scenes, scripts, assets, or project.godot changes.
+
+**Goal:** Convert the approved First Playable Area Layout (`docs/FIRST_PLAYABLE_AREA_LAYOUT.md`, APPROVED by Project Owner / Orchestrator 2026-08-29) into an implementation plan for the complete primitive-geometry production greybox, decomposed so that **no single agent task builds the entire ~692 m slice** — each phase is independently reviewable with its own acceptance criteria, validation, commit, and stop/review gate.
+
+**Requirements (delivered in `docs/PRODUCTION_GREYBOX_PLAN.md`):**
+
+1. Six-phase decomposition (0 Composition Skeleton, 1 Corporate Access, 2 Monumental Atrium, 3 Elevated Transition, 4 Final Vista, 5 Full Route Integration and Measurement) with per-phase deliverables, targets inherited from the approved layout, acceptance criteria, and stop/review gates.
+2. Scene architecture under `game/world/first_playable/`: one composition scene plus four beat scenes; composition over one gigantic `.tscn`; a boundary transform contract frozen after Phase 0; the approved player scene reused unchanged; shared WorldEnvironment / development lighting in the root.
+3. Explicit prohibitions: no gameplay scripts merely to construct static geometry, no autoloads, no event buses, no procedural level generation, no architecture-kit abstractions, no production materials, no plugins; primitive MeshInstance3D / StaticBody3D / CollisionShape3D geometry acceptable.
+4. Per-phase validation strategy (Godot headless import, scene load/instantiate, parser/runtime error check, player constant verification, collision/traversal checks where applicable, `git diff --check`, diff/status review); M1-style scripted waypoint/physics traversal for route phases; no permanent performance benchmark harness.
+5. Commit strategy: separate commits per approved phase (`feat: scaffold first playable greybox` … `test: validate first playable route`); each phase stops for Orchestrator review before the next begins.
+6. Phase 5 timing gate preserved: the layout's ~692 m / 2.0 m/s ≈ 5:46 theoretical route-time tension stays unresolved; the complete in-engine route must be measured, and measured direct traversal < 6:00 is a hard STOP-AND-ESCALATE to the Orchestrator — no walk-speed change, no arbitrary corridor length, no scope beyond ~700 m, no `docs/VERTICAL_SLICE.md` modification without Orchestrator approval.
+
+**Constraints:** planning only; the approved layout's spatial decisions are not altered; `game/world/greybox_scale_test.tscn` remains the historical M1 validation scene and is not overwritten or repurposed; no implementation is authorized by this task.
+
+## Acceptance State (recorded 2026-08-29)
+
+Deliverable: `docs/PRODUCTION_GREYBOX_PLAN.md` (Status: DRAFT — pending Orchestrator review). Phases 0–5 defined with deliverables, targets, acceptance criteria, validation, commit messages, and gates; global rules (player unchanged, primitive geometry, no new systems, hidden-ramp stairs ≤ ~17°, M1 scene untouched, escalation rules) stated once and referenced per phase. Validation performed: review of all changed Markdown; confirmed no `game/` changes and `project.godot` unchanged; confirmed layout values untouched except the status line and the §7.2 → §7.1 cross-reference fix; confirmed `AGENTS.md` authority hierarchy unchanged except tool-neutral Implementation Agent terminology; `git diff --check`; full diff review; `git status`.
+
+---
+
+# ARCHIVED — Define First Playable Area Layout (COMPLETED AND APPROVED 2026-08-29)
+
+**Type:** Architectural / spatial design only. No Godot scenes, no player code, no project settings, no assets, no scripts, no production greyboxing.
+
+**Status:** COMPLETED AND APPROVED — `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` **approved by the Project Owner / Orchestrator (2026-08-29)**; status updated to APPROVED and the §7.2 → §7.1 cross-reference corrected. All approved spatial decisions stand unchanged: ~692 m critical path, 80 × 64 m atrium, 80 m clear height, floors at 152 m → 166 m → 172 m, 130 m × ~6 m skybridge, ~90° composition reorientation before the final vista, final vista facing north/northwest. The 5:46 theoretical route-time tension (§15) is deliberately **not resolved**; it remains an in-engine validation requirement for the production greybox (see `docs/PRODUCTION_GREYBOX_PLAN.md` §9).
 
 ## Specification
 

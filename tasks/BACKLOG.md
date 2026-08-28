@@ -8,13 +8,15 @@ The Orchestrator explicitly approved inserting the player controller implementat
 
 ## Active Task
 
-- **Define first playable area layout** — active task. **Deliverable complete (2026-08-28):** `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` written (Status: DRAFT — pending Orchestrator review). Documentation/design work is complete; **no implementation of the layout has started**. This task remains active and pending Orchestrator review; do not begin production greybox or any other task — the Orchestrator will decide the implementation sequence after reviewing the layout.
+- **Plan First Playable Production Greybox** — active task. **Deliverable complete (2026-08-29):** `docs/PRODUCTION_GREYBOX_PLAN.md` written (Status: DRAFT — pending Orchestrator review). Documentation/planning work is complete; **no implementation is authorized** — Phase 0 and all later phases may begin only after the Orchestrator approves the plan, and each approved phase stops for review before the next begins.
 
 ## Pending
 
-*(none — the next backlog item is the active task above)*
+*(none startable — the production greybox implementation phases 0–5 are defined in `docs/PRODUCTION_GREYBOX_PLAN.md` and are blocked pending Orchestrator approval of that plan)*
 
 ## Completed
+
+- ~~Define First Playable Area Layout~~ — **completed and approved by the Project Owner / Orchestrator** (2026-08-29). `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` (Status: APPROVED): four-beat route ~692 m main path (~147 m Corporate Access, ~255 m Monumental Atrium at 80 × 64 m / 80 m clear, ~185 m Elevated Transition with the 130 m × ~6 m west-running skybridge, ~105 m Final Vista), floors at 152 m → 166 m → 172 m (~20 m playable vertical range), ~3,715 m² main traversable floor (~3,825 m² incl. ~3% optional), reveal-discipline and scale-anchor rules, wayfinding table, benchmark viewpoint mapping, and the explicitly unresolved ~5:46 theoretical route-time tension deferred to in-engine measurement. Cross-reference fix applied at approval (§7.2 → §7.1); spatial decisions unchanged.
 
 - ~~Define Performance Benchmark Methodology~~ — completed and **approved by the Orchestrator** (2026-08-28). Methodology defined in `docs/PERFORMANCE_BENCHMARK.md` (Status: APPROVED): diagnostic (Mode A) vs representative (Mode B) benchmark modes, test-environment and rendering-configuration records with runtime renderer verification, Godot 4.7 `Performance` metrics (frame time primary, FPS presentation-only), session-cold vs warm passes (session-cold explicitly not first-user cache-cold), six fixed greybox viewpoints + deterministic route, statistical reporting (mean/median/worst/p95/p99 frame time), CPU/GPU diagnosis workflow, BASELINE/COMPARABLE/NON-COMPARABLE regression rules, benchmark-result template, escalation rule. `docs/PERFORMANCE_BUDGET.md` linked (methodology = HOW, budget = WHAT); all exact budgets remain DEFERRED until target hardware and the M3 representative benchmark scene exist. Orchestrator review corrections applied: `--gpu-profile` available for release execution (instrumented release runs remain diagnostic); fresh-launch runs labelled `SESSION-COLD` with a cache-cold/first-user simulation note. `project.godot` renderer-line canonicalization recorded as an unresolved hygiene observation (§17).
 

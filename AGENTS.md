@@ -18,9 +18,9 @@ Development follows this hierarchy:
 2. ChatGPT — Orchestrator / Technical Director
 3. Repository architecture/specifications
 4. Active task specification
-5. Codex / Claude Code — Implementation Agents
+5. Implementation Agents
 
-The Human Project Owner has final authority over product direction. ChatGPT owns architecture, technical direction, scope control, milestone planning, task decomposition, acceptance criteria, code review reasoning, performance strategy, debugging strategy, and documentation architecture. Codex and Claude Code are implementation agents and must not independently expand scope or redesign major architecture.
+The Human Project Owner has final authority over product direction. ChatGPT owns architecture, technical direction, scope control, milestone planning, task decomposition, acceptance criteria, code review reasoning, performance strategy, debugging strategy, and documentation architecture. Implementation agents (for example OpenCode, Codex, or Claude Code) must not independently expand scope or redesign major architecture.
 
 ## Implementation Agent Responsibilities
 

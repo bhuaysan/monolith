@@ -1,6 +1,6 @@
 # FIRST PLAYABLE AREA LAYOUT
 
-**Status:** DRAFT — pending Orchestrator review.
+**Status:** APPROVED by Project Owner / Orchestrator (2026-08-29).
 
 **Related documents:**
 
@@ -50,7 +50,7 @@ The completed M1 owner evaluation is treated as evidence. The successful scale c
 |---|---:|---|
 | Human Scale (Zone A) | 7/10 | **Targeted refinement:** Beat 1 carries a denser, consistent human-scale rhythm (see §6.3) — layout requirement, not prop density |
 | Reveal (Zone C entry) | 8/10 | Preserve the compression-corridor → human-scale door → full-height reveal pattern unchanged |
-| Atrium | 9/10 | Preserve ~80 m clear height and validated footprint proportion (§7.2) |
+| Atrium | 9/10 | Preserve ~80 m clear height and validated footprint proportion (§7.1) |
 | Instinctive Upward Look | 10/10 | First atrium reveal must expose the full 80 m height at once (§7.4) |
 | Scale References | 7/10 | **Targeted refinement:** explicit near-field anchor rules (§13), including a human-scale object within ~5–10 m of the atrium reveal position |
 | Skybridge Height/Depth | 9/10 | Preserve bridge width reference (~6 m), 1.15 m rails, exposed depth below |
