@@ -1,8 +1,25 @@
-# ACTIVE TASK — Define Performance Benchmark Methodology
+# ACTIVE TASK — Define First Playable Area Layout
+
+**Status:** NEXT ACTIVE TASK — set 2026-08-28 when the Orchestrator approved the Performance Benchmark Methodology. **NOT BEGUN.** No design, layout, or implementation work for this task may start until the Orchestrator issues its task specification (goal, context, relevant files, requirements, constraints, acceptance criteria). The specification below is intentionally empty.
+
+## Specification
+
+*To be provided by the Orchestrator. Do not begin this task without it.*
+
+## Binding Context Already in the Repository
+
+- `docs/VERTICAL_SLICE.md` §4/§6 — the four-beat spatial sequence and v0.1 scope bounds (route ~400–700 m, ≤ ~4,000 m² traversable floor, ≤ ~120 m playable vertical range, ≤ ~25% optional side area).
+- `docs/GREYBOX_SCALE_TEST.md` — M1 completed and owner-evaluated; prototype route measured ~195 m; refinement observations (Human Scale 7/10, Scale References 7/10) are inputs to layout refinement, not defects.
+- `docs/PERFORMANCE_BENCHMARK.md` — approved methodology; benchmark viewpoints and route must remain representable by whatever layout this task defines.
+- `docs/PLAYER_MOVEMENT.md` — player constants are fixed project values; layout authors against them, never changes them.
+
+---
+
+# ARCHIVED — Define Performance Benchmark Methodology (COMPLETED 2026-08-28)
 
 **Type:** Documentation/design only. No implementation, no scenes, no scripts, no project settings changes. No subsequent task may start before Orchestrator review.
 
-**Status (2026-08-28):** Methodology delivered — `docs/PERFORMANCE_BENCHMARK.md` created; `docs/PERFORMANCE_BUDGET.md` extended to link it (§ "Relationship to the Benchmark Methodology"). All acceptance criteria below are met. **Pending Orchestrator review.** "Define first playable area layout" remains gated.
+**Status:** COMPLETED AND APPROVED — `docs/PERFORMANCE_BENCHMARK.md` created; `docs/PERFORMANCE_BUDGET.md` extended to link it (§ "Relationship to the Benchmark Methodology"). **Approved by the Orchestrator (2026-08-28)**; review corrections applied (release-capable `--gpu-profile`; `SESSION-COLD` vs warm run terminology). The review gate is lifted; "Define First Playable Area Layout" is the next active task.
 
 ## Goal
 
@@ -59,9 +76,9 @@ The methodology document must define:
 - Markdown structure review of all edited documents.
 - Cross-check against `docs/VERTICAL_SLICE.md` §14 and `docs/ROADMAP.md` for contradictions; report any conflict instead of resolving it silently.
 
-## Gate
+## Gate — LIFTED (2026-08-28)
 
-**No subsequent task may start before Orchestrator review of this task's results.** "Define first playable area layout" remains blocked until then.
+Original gate: "No subsequent task may start before Orchestrator review of this task's results." The Orchestrator review is complete (approved with corrections); the gate is lifted and "Define First Playable Area Layout" is the next active task.
 
 ## Acceptance State (recorded 2026-08-28)
 
@@ -70,7 +87,7 @@ Deliverable: `docs/PERFORMANCE_BENCHMARK.md` (new, with `docs/PERFORMANCE_BUDGET
 | Requirement | Covered by |
 |---|---|
 | 1. Metrics | PERFORMANCE_BENCHMARK.md §6 (timing, rendering complexity, memory, pipeline compilations — with Godot 4.7 `Performance` monitor names) |
-| 2. Measurement procedure | §3 (modes A/B), §4 (headless rule), §5 (environment record), §7 (statistics), §8 (cold/warm), §10 (route), §11 (resolution/graphics configuration) |
+| 2. Measurement procedure | §3 (modes A/B), §4 (headless rule), §5 (environment record), §7 (statistics), §8 (session-cold/warm), §10 (route), §11 (resolution/graphics configuration) |
 | 3. Reference workloads | §9 (six fixed greybox viewpoints as provisional workload; M3 supersedes), §10 (deterministic route) |
 | 4. Target hardware | §15 — recorded as DEFERRED with owning decision (Project Owner + Orchestrator) and proposed default (Project Owner's development PC, hardware captured per §5) |
 | 5. Budget structure | §1 and §13 (frame-time statistics as the pass/fail basis; verdicts require Mode B) plus the extended PERFORMANCE_BUDGET.md — all exact numbers remain DEFERRED |

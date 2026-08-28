@@ -1,6 +1,6 @@
 # PERFORMANCE BENCHMARK METHODOLOGY
 
-**Status:** DRAFT — defined 2026-08-28, pending Orchestrator review.
+**Status:** APPROVED by Orchestrator (2026-08-28). Review corrections applied: `--gpu-profile` is available for release execution as well as debug builds; fresh-launch runs are labelled `SESSION-COLD` (not first-user cache-cold).
 
 **Related documents:**
 
@@ -53,7 +53,7 @@ Two modes exist. Every recorded result states which mode it belongs to. **Result
 
 - Godot editor build, or a debug export template.
 - Editor **Debugger** panel: **Monitors** tab (live `Performance` monitors), **Profiler** tab (script/physics/frame time breakdown), **Visual Profiler** tab (CPU and GPU framegraphs of rendering tasks — the primary CPU/GPU split tool in Forward+), **Video RAM** tab (per-resource VRAM usage).
-- `--gpu-profile` command-line argument (debug builds) when a rendering-side breakdown is needed.
+- `--gpu-profile` command-line argument (available for release execution as well as debug builds) when a rendering-side breakdown is needed. Because it instruments rendering, a release-export run with `--gpu-profile` is a diagnostic run — Mode A, never Mode B.
 - Diagnostic aids (collision shapes, wireframe, deliberately disabled features) allowed, as long as the result is labelled as diagnostic-only and never compared with Mode B numbers.
 
 **Limitations to state in every Mode A record:**
@@ -118,7 +118,7 @@ Every benchmark result must record enough information to reproduce it. Fields no
 | Build type | `editor build`, `debug export`, or `release export` |
 | Command-line arguments | every engine-affecting argument used (e.g. `--resolution`, `--fullscreen`, `--max-fps`, `--disable-vsync`, `--rendering-method`) |
 | Relevant rendering project settings | anything under `rendering/`, `display/window/`, `application/run/` that affects rendering and is not at its default |
-| Cold or warm run | `COLD` or `WARM` (§8) — never omitted |
+| Run state | `WARM` or `SESSION-COLD` (§8) — never omitted |
 
 Hardware identity is captured with the OS's own reporting tools at benchmark time and copied verbatim into the record.
 
@@ -146,7 +146,7 @@ The minimum metrics for any benchmark record. Values come from Godot's built-in 
 | Physics process time | `Performance.TIME_PHYSICS_PROCESS` | Time for one physics frame. |
 | Navigation process time | `Performance.TIME_NAVIGATION_PROCESS` | Recorded only when navigation is actually used; currently N/A. |
 | Script / per-function cost | Debugger > Profiler tab | Mode A only. Frame Time includes rendering; Idle/Physics splits separate non-rendering logic. |
-| GPU vs CPU rendering split | Debugger > Visual Profiler; `--gpu-profile` (debug builds) | Mode A only. Establishes which side owns the frame (§12). |
+| GPU vs CPU rendering split | Debugger > Visual Profiler; `--gpu-profile` (release execution and debug builds) | Mode A only. Establishes which side owns the frame (§12). |
 
 **Frame-time conversions (reference only):**
 
@@ -193,7 +193,7 @@ Build-type caveat: per the Godot 4.7 documentation, some built-in monitors (incl
 | Specialization compilations | `Performance.PIPELINE_COMPILATIONS_SPECIALIZATION` | Background optimization; should not stutter. |
 | Canvas pipeline compilations | `Performance.PIPELINE_COMPILATIONS_CANVAS` | 2D canvas; mostly N/A for MONOLITH today. |
 
-Cold and warm behaviour are separated (§8). **One-time compilation stutters must never be averaged away:** cold-pass spikes are reported as cold-pass observations, and warm-pass percentiles (§7) must not include cold-pass frames. If a pipeline compilation stutter occurs *during* a warm sample (a pipeline first needed mid-route), the record must flag it rather than let it silently distort percentiles.
+Session-cold and warm behaviour are separated (§8). **One-time compilation stutters must never be averaged away:** session-cold spikes are reported as session-cold observations, and warm-pass percentiles (§7) must not include session-cold frames. If a pipeline compilation stutter occurs *during* a warm sample (a pipeline first needed mid-route), the record must flag it rather than let it silently distort percentiles.
 
 ## 7. Statistical Reporting
 
@@ -214,18 +214,19 @@ Default sample duration: **60 s** per held benchmark viewpoint (§9), with 30 s 
 
 **Why percentiles:** the mean hides everything a player actually feels. A run with 55 ms median and 400 ms spikes feels far worse than a constant 60 ms run, despite a better average. Percentiles are computed on **frame times**, not FPS values (percentile math on FPS is misleading), and expose the stutter that an average conceals.
 
-## 8. Cold and Warm Passes
+## 8. Session-Cold and Warm Passes
 
-### 8.1 Cold pass (`COLD`)
+### 8.1 Session-cold pass (`SESSION-COLD`)
 
 A run from a fresh process launch, recording from scene load onward.
 
-**Purpose:** expose first-use costs — mesh/surface/draw pipeline compilation (§6.4), shader stutter, and loading-related stalls.
+**Purpose:** expose first-use costs *within the session* — mesh/surface/draw pipeline compilation (§6.4), shader stutter, and loading-related stalls.
 
 **Rules:**
 
-- Every cold-pass result is labelled `COLD`.
-- Cold results are never compared against warm results, never used for steady-state verdicts, and never merged into warm percentiles.
+- Every session-cold result is labelled `SESSION-COLD`.
+- Session-cold results are never compared against warm results, never used for steady-state verdicts, and never merged into warm percentiles.
+- **`SESSION-COLD` is not cache-cold.** A session-cold run starts a new process but still benefits from whatever caches already exist on the machine — including Godot's persisted pipeline cache and potentially the GPU driver's shader caches — so it must **not** be claimed to represent a completely clean first-user cache state. A true cache-cold / first-user simulation requires explicitly handling those caches (clearing or bypassing Godot's persisted pipeline cache and, where relevant, the GPU driver's shader caches) and should only be performed when specifically testing first-run stutter; if performed, it is labelled explicitly (e.g. `CACHE-COLD`) and reported separately from both `SESSION-COLD` and `WARM`.
 
 ### 8.2 Warm pass (`WARM`)
 
@@ -238,7 +239,7 @@ The steady-state comparison condition. A warm benchmark begins only after:
 
 **Procedure:** launch → load complete → walk the full route once at normal pace → return to the starting viewpoint (or launch a second session that performs step 2 immediately before sampling) → run the timed samples. This is a per-session discipline, not a promise that caches are portable: engine pipeline caches and GPU driver shader caches differ across machines, drivers, and sessions, so warm-up is repeated every session regardless of what may be cached. The procedure used must be recorded in the result.
 
-Cold and warm results from the same session may be reported side by side (clearly labelled) to show the cold/warm delta, but they are separate records and are never averaged together.
+Session-cold and warm results from the same session may be reported side by side (clearly labelled) to show the session-cold/warm delta, but they are separate records and are never averaged together.
 
 ## 9. Benchmark Locations
 
@@ -257,7 +258,7 @@ The completed M1 greybox (`game/world/greybox_scale_test.tscn`) is the initial s
 
 - **M1 can establish an engine/project baseline** — how this project, renderer, and hardware behave on a known, trivial workload.
 - **Later art and lighting milestones (M3 Lighting Prototype, M5 Hero Scene, M6 Megacity Illusion) must provide representative benchmark content.** When M3's benchmark scene exists, it becomes the reference workload and its locations supersede these.
-- **The benchmark methodology (modes, records, metrics, statistics, cold/warm discipline, comparability rules) remains stable while benchmark scenes become more representative.** Only §9 and §11 content change as scenes evolve.
+- **The benchmark methodology (modes, records, metrics, statistics, session-cold/warm discipline, comparability rules) remains stable while benchmark scenes become more representative.** Only §9 and §11 content change as scenes evolve.
 
 ## 10. Benchmark Route
 
@@ -300,7 +301,7 @@ When performance is below target (or changes unexpectedly), the following sequen
 
 1. **Establish reproducibility.** Repeat the observation under the same conditions (§5). If it does not reproduce, stop and investigate the difference instead of optimizing.
 2. **Inspect frame/process timing** — `Performance.TIME_PROCESS` and `TIME_PHYSICS_PROCESS`, plus the Debugger Profiler's Frame Time vs Physics Time split. This answers "is the frame long, and is it long outside rendering?"
-3. **Inspect GPU timing/profile** — Debugger > Visual Profiler (CPU and GPU framegraphs), or `--gpu-profile` on debug builds. This answers "which side owns the frame?" A frame whose GPU graph dominates is GPU-bound; a frame where CPU rendering tasks dominate is CPU-side render-bound; long physics/script time is CPU logic-bound.
+3. **Inspect GPU timing/profile** — Debugger > Visual Profiler (CPU and GPU framegraphs), or `--gpu-profile` (available for release execution as well as debug builds). This answers "which side owns the frame?" A frame whose GPU graph dominates is GPU-bound; a frame where CPU rendering tasks dominate is CPU-side render-bound; long physics/script time is CPU logic-bound.
 4. **Inspect rendering complexity** — rendered objects, primitives, draw calls (§6.2). Ask what changed relative to the last comparable baseline.
 5. **Inspect physics and script contribution** — Profiler tab, script functions, Self vs Inclusive time.
 6. **Inspect memory and pipeline-compilation behaviour** — VRAM monitors (§6.3), pipeline compilation counters (§6.4). Distinguish one-time compilation costs from steady costs.
@@ -324,7 +325,7 @@ Every meaningful benchmark is recorded as a result record tied to its commit SHA
 | Term | Meaning |
 |---|---|
 | **BASELINE** | A known reference measurement: a valid record (complete §5/§11 information, valid sample per §7) that later results may be compared against. |
-| **COMPARABLE** | A measurement made under sufficiently equivalent conditions to a baseline: same benchmark mode, same build type, same hardware, same renderer/driver/API, same resolution and quality configuration, same scene/path, same cold/warm state. Only comparable records may be numerically diffed. |
+| **COMPARABLE** | A measurement made under sufficiently equivalent conditions to a baseline: same benchmark mode, same build type, same hardware, same renderer/driver/API, same resolution and quality configuration, same scene/path, same run state (warm / session-cold). Only comparable records may be numerically diffed. |
 | **NON-COMPARABLE** | A result where hardware, settings, build type, or renderer conditions differ enough that numerical comparison would be misleading. Non-comparable results are still recorded — they carry qualitative information — but they must be explicitly marked NON-COMPARABLE and must never be presented as regressions or improvements. |
 
 **Performance numbers from different hardware are never compared as though they were direct regressions.** A slower number on a different machine says nothing about a commit; it says something about the machine.
@@ -388,7 +389,7 @@ Copy this template into `docs/benchmarks/<date>-<short-description>.md` and fill
 - **Relevant rendering project settings:** <non-default entries, or none>
 
 ## Run state
-- **Cold/warm:** COLD / WARM (procedure used: <per §8>)
+- **Run state:** WARM / SESSION-COLD (procedure used: <per §8>)
 - **Sample duration:** <s per sample>
 
 ## Timing metrics (per sample)
@@ -409,7 +410,7 @@ Copy this template into `docs/benchmarks/<date>-<short-description>.md` and fill
 - **Static memory (debug builds only):** <or N/A in release>
 
 ## Pipeline compilation / stutter observations
-- **Cold-pass compilation counts (MESH/SURFACE/DRAW/SPECIALIZATION):** <or N/A>
+- **Session-cold compilation counts (MESH/SURFACE/DRAW/SPECIALIZATION):** <or N/A>
 - **Mid-sample compilation stutters:** <observed / none>
 
 ## Profiler diagnosis (Mode A records; else "not applicable")
@@ -451,7 +452,7 @@ This methodology succeeds when another agent can reproduce a benchmark **without
 - core metrics are defined with their Godot sources (§6);
 - frame time is emphasized over FPS alone (§2, §6.1);
 - CPU vs GPU diagnosis is defined (§12);
-- cold vs warm behaviour is separated (§8);
+- session-cold vs warm behaviour is separated (§8);
 - fixed benchmark viewpoints and the route concept are defined (§9–§10);
 - statistical reporting is defined (§7);
 - baseline/regression rules are defined (§13);
