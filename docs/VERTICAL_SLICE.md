@@ -1,6 +1,6 @@
 # VERTICAL SLICE v0.1
 
-**Status:** DRAFT — definition approved for use as the target for subsequent design and implementation tasks.
+**Status:** APPROVED — baseline target for subsequent v0.1 design and implementation tasks.
 
 This document defines the concrete target experience for MONOLITH Vertical Slice v0.1.
 
@@ -165,7 +165,7 @@ The slice is a linear four-beat progression. Each beat exists to set up the next
 - No further playable space beyond this point in v0.1.
 - No interactive endpoint, terminal, cutscene, or credits sequence is required.
 
-**Endpoint definition:** The slice is complete when the player is standing in the final vista space with the composed view available. How the session formally terminates (immediate return to menu, quiet hold, fade) is a **deferred decision** — see §14.
+**Endpoint definition:** The slice is complete when the player is standing in the final vista space with the composed view available. How the session formally terminates (immediate return to menu, quiet hold, fade) is a **deferred decision** — see §15.
 
 ---
 
@@ -262,7 +262,7 @@ Audio exists to reinforce scale. It must not merely fill silence.
 - The transition between compressed (Beat 1) and monumental (Beat 2) acoustics must be **immediately audible** at the reveal threshold. The acoustic change is part of the reveal.
 - Distant sources should read as distant: filtered, delayed, reverberant, quiet.
 - Silence is a usable material. Beat 4 may be the quietest point in the slice.
-- No music is required for v0.1. Whether the slice uses score at all is deferred (§14).
+- No music is required for v0.1. Whether the slice uses score at all is deferred (§15).
 
 **Explicitly out of scope for v0.1:** no complex dynamic audio system, no runtime acoustic simulation, no procedural ambience system, no occlusion/portal audio framework. Beat-appropriate ambience and reverb configured per space is sufficient.
 
