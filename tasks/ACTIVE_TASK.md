@@ -1,166 +1,101 @@
-# ACTIVE TASK — Define Player Movement Specification
+# ACTIVE TASK — Implement Player Controller v0.1
 
-**Type:** Documentation / design only. No implementation.
+**Type:** Implementation. Controller only. The greybox must not begin.
 
 ## Goal
 
-Fix the movement and camera constants for Vertical Slice v0.1 so that all later greybox and architectural work is authored against a single, known player.
+Implement the smallest reliable first-person controller required to perform the upcoming Greybox Scale Test, exactly as specified in `docs/PLAYER_MOVEMENT.md`.
 
-The specification lives in `docs/PLAYER_MOVEMENT.md`.
-
-This task closes deferred decision 1 of `docs/VERTICAL_SLICE.md` §15 and supplies the values §9.6 and §9.7 of that document declare deferred.
+The objective is **not** to build a reusable FPS framework. It is one small scene and one short script.
 
 ## Context
 
-`docs/VERTICAL_SLICE.md` is now **APPROVED** as the baseline target for v0.1 design and implementation.
+`docs/PLAYER_MOVEMENT.md` is **Orchestrator-approved** (Status: APPROVED — implementation and greybox baseline for Vertical Slice v0.1). Its constants are binding and are not tuned by this task.
 
-That document deliberately did not select player eye height or walking speed, but requires both to be fixed and then held stable, because architectural proportion (eye height) and perceived spatial size (speed) are authored against them. No greybox geometry may be authored until they are fixed.
+The Orchestrator explicitly approved inserting this implementation task ahead of "Build greybox scale test", because the greybox validation criteria in `PLAYER_MOVEMENT.md` §15 cannot be evaluated without a working player.
 
-**No player controller implementation is authorized by this task.** The controller is a separate, later task.
+**Only the minimal controller is authorized.** The Greybox Scale Test is the next task and must not begin here.
 
 ## Relevant Files
 
-- `docs/PLAYER_MOVEMENT.md` — the deliverable
-- `docs/VERTICAL_SLICE.md`
-- `docs/WORLD_SCALE.md`
-- `docs/ARCHITECTURE.md`
-- `docs/CODING_RULES.md`
-- `docs/ROADMAP.md`
-- `tasks/BACKLOG.md`
-- `AGENTS.md`
-
-## Movement Philosophy
-
-> Movement should disappear beneath the architectural experience.
-
-MONOLITH is not a movement shooter, platformer, immersive sim, or traversal game. The controller must feel grounded, predictable, physically plausible, responsive without being twitchy, stable for sustained observation, and deliberately slower than a conventional FPS controller.
-
-## Authoritative v0.1 Baseline
-
-These values are Orchestrator-approved and must appear in the specification unchanged.
-
-### Player scale
-
-| Value | Setting | Category |
-|---|---:|---|
-| Reference human height | ~1.75 m (from `docs/WORLD_SCALE.md`) | Inherited |
-| Camera / eye height | **1.65 m** above the standing floor | Authored scale constant |
-| Standing body height | ~1.80 m | Implementation target |
-| Capsule radius | ~0.32 m | Implementation target |
-
-The 1.65 m eye height must not change casually once greybox authoring begins. Any change requires explicit Orchestrator approval, because it changes perceived architectural proportion. Collision values may take small technical adjustment if Godot behaviour requires it, provided the eye height is unchanged.
-
-### Locomotion
-
-| Value | Setting |
-|---|---:|
-| Walk speed | **2.0 m/s** |
-| Ground acceleration | 8.0 m/s² |
-| Ground deceleration | 10.0 m/s² |
-| Sprint | None |
-| Jump | None |
-| Crouch | None |
-| Lean / mantle / vault / climb | None |
-
-Movement is camera-yaw-relative. Diagonal input must be normalized. No momentum system, stamina, or movement state machine.
-
-Walk speed is validated against the 10–15 minute duration target, the ≥ 6 minute direct-route minimum, and the ~400–700 m route target. **Do not raise movement speed to compensate for a short route.** Reconsider layout distance or slice scope explicitly instead.
-
-### Gravity and grounding
-
-Use Godot's project/default gravity source. No airborne gameplay, no fall challenges. The controller must be stable on flat floors, realistic ramps, authored stairs, and the transitions between them.
-
-No custom complex stair-climbing algorithm is required. For v0.1, stair visuals may use simplified hidden ramp collision where that produces more stable first-person traversal.
-
-### Camera
-
-| Value | Setting |
-|---|---:|
-| FOV | **70° vertical** (Godot `Camera3D` uses vertical FOV — state this explicitly) |
-| Pitch clamp | −89° to +89° |
-| Yaw | Unrestricted |
-| Mouse look | Direct, no acceleration; sensitivity exported/tunable |
-
-No head bob, camera roll, breathing sway, landing shake, speed-based FOV change, or camera inertia. Mouse sensitivity is not an architectural scale constant.
-
-### Input
-
-W/S/A/D move, mouse looks, Escape releases mouse capture. Later implementation must use Godot Input Map actions (`move_forward`, `move_backward`, `move_left`, `move_right`), **not created in this task**. Gamepad support deferred.
+- `docs/PLAYER_MOVEMENT.md` — the approved specification; authority for every constant
+- `game/player/player.tscn` — player scene
+- `game/player/player_controller.gd` — controller script
+- `game/debug/player_movement_sandbox.tscn` — development-only verification scene
+- `project.godot` — Input Map actions only
+- `docs/VERTICAL_SLICE.md`, `docs/ARCHITECTURE.md`, `docs/CODING_RULES.md`, `AGENTS.md`
 
 ## Requirements
 
-`docs/PLAYER_MOVEMENT.md` must contain at minimum:
+### Scene composition
 
-1. Status
-2. Purpose
-3. Movement Philosophy
-4. Authority / Relationship to Vertical Slice
-5. Player Scale
-6. Locomotion
-7. Movement Parameters
-8. Gravity and Grounding
-9. Stair / Ramp Strategy
-10. Camera
-11. Input
-12. Collision and Level-Authoring Implications
-13. Explicit Non-Goals
-14. Implementation Constraints
-15. Greybox Validation Criteria
-16. Deferred Decisions
+`CharacterBody3D` root whose origin is the player's floor position, containing one `CollisionShape3D` with a `CapsuleShape3D`, a pitch pivot `Node3D`, and a `Camera3D`. No other components.
 
-It must use specification language rather than marketing prose, and must not contradict `AGENTS.md`, `docs/VERTICAL_SLICE.md`, or `docs/WORLD_SCALE.md`.
+- capsule full height ≈ 1.80 m (Godot `CapsuleShape3D.height` includes the hemispheres)
+- capsule radius ≈ 0.32 m
+- camera eye height exactly 1.65 m above the standing floor
+- `Camera3D` vertical FOV exactly 70°
 
-### Explicit non-goals to exclude
+### Locomotion
 
-sprint, jump, crouch, prone, mantle, vault, climbing, wall-running, sliding, dashing, leaning, stamina, parkour, movement upgrades, movement abilities, camera shake systems, head bob, movement-based FOV effects, third-person mode, complex footstep systems, and complex stair-solving unless measured evidence later requires it. No speculative architecture for any of them.
+Walk speed 2.0 m/s, acceleration 8.0 m/s², deceleration 10.0 m/s². No sprint, jump, crouch, lean, mantle, vault, or climb. Movement is camera-yaw-relative; pitch must not affect movement direction; diagonal input normalized; forward, backward and strafe share one speed. Horizontal acceleration operates on the velocity vector, not per axis. No movement state machine and no preparation for future abilities.
 
-### Implementation constraints to document (not implement)
+### Physics and grounding
 
-A future controller lives under `game/player/` and stays minimal: `CharacterBody3D` root, standing `CollisionShape3D`, camera/pitch pivot, `Camera3D`, one focused controller script. No autoload, no global event bus, no generic ability system, no state machine unless behaviour requires one, no plugin or third-party controller. Typed GDScript with exported properties for designer tuning.
+Grounded `CharacterBody3D` movement via `move_and_slide()`, using `get_gravity()` rather than a duplicate gravity constant. No jump logic, air-control gameplay, fall damage, death, or custom step solver. Any non-default `CharacterBody3D` physics property must be reported with a reason.
 
-### Level-authoring implications to document
+### Mouse look
 
-Floors authored against 1.65 m eye height; doors and railings must read correctly at that height; corridor width must comfortably accommodate the capsule; no route segment may require an excluded mechanic; stairs and ramps traversable at walking speed; vista framing evaluated at the canonical height and FOV; route timing evaluated at 2.0 m/s.
+Unrestricted yaw on the body, pitch on the pivot only, clamped to approximately ±89°. No roll, head bob, sway, smoothing, mouse acceleration, or FOV animation. Mouse sensitivity is an exported designer-tunable property and is not a scale constant. Mouse is captured on entering the running scene; Escape releases capture for development. No pause menu, settings menu, or UI.
 
-> The level adapts to the approved player scale — not the other way around.
+### Input Map
+
+`project.godot` gains exactly four actions: `move_forward` (W), `move_backward` (S), `move_left` (A), `move_right` (D). No sprint, jump, crouch, interaction, or gamepad actions. Keys must not be hardcoded in the controller.
+
+### Exported parameters
+
+Walk speed `2.0`, acceleration `8.0`, deceleration `10.0`, eye height `1.65`, FOV `70.0`, plus mouse sensitivity. Exporting an authored constant does not make it freely tunable; defaults must not change in this task.
+
+### Code quality
+
+Typed GDScript, snake_case, focused functions, explicit typed `@onready` references, no fragile NodePaths. Movement in `_physics_process()`, mouse events in an input callback, no unnecessary `_process()`. No autoloads, event buses, character frameworks, ability systems, state machines, plugins, or external dependencies.
+
+### Development sandbox
+
+`game/debug/player_movement_sandbox.tscn` exists only to verify the controller. Primitive floor, wall, one ordinary ramp, one development light, and an instance of `game/player/player.tscn`. It must not become the Greybox Scale Test: no vertical slice beats, atrium, skybridge, tower geometry, vistas, environment art, lighting experiments, or production materials. It is not configured as the permanent main scene.
 
 ## Constraints
 
-- Documentation only.
-- Do not implement the player controller.
-- Do not create Godot scenes, scripts, or Input Map actions.
-- Do not begin the greybox.
-- Do not add assets, plugins, or dependencies.
-- Do not modify anything under `game/`, or `project.godot`.
-- Do not change renderer or project settings.
-- Do not invent additional major milestones or features.
-- Do not advance this file to the next task; that happens only after Orchestrator review.
+- Do not alter any constant in `docs/PLAYER_MOVEMENT.md`.
+- Do not perform the Greybox Scale Test, design the four spatial beats, tune route length, or change Vertical Slice scope numbers.
+- Do not implement anything from `docs/PLAYER_MOVEMENT.md` §13 Explicit Non-Goals.
+- Do not stage `.godot/` cache files.
 
 ## Acceptance Criteria
 
-- `docs/PLAYER_MOVEMENT.md` exists and contains all sixteen required sections.
-- All authoritative baseline values above appear exactly: 1.65 m eye height, ~1.80 m body height, ~0.32 m radius, 2.0 m/s walk, 8.0 m/s² acceleration, 10.0 m/s² deceleration, 70° vertical FOV, −89°/+89° pitch.
-- The document states explicitly that 70° is **vertical**, not horizontal.
-- The authored camera-height constant is clearly distinguished from collision-shape implementation targets.
-- Sprint, jump, crouch, and all other excluded mechanics are explicitly excluded with reasons.
-- The document forbids compensating for route length by raising movement speed.
-- Level-authoring implications of the constants are stated explicitly.
-- Ten or more objective greybox validation criteria are defined, with a rule requiring single-variable failure reporting.
-- Implementation philosophy is described without any implementation being performed.
-- Deferred decisions are separated from decided values.
-- The document does not contradict `AGENTS.md`, `docs/VERTICAL_SLICE.md`, or `docs/WORLD_SCALE.md`.
-- Nothing under `game/` and no project configuration has changed.
+- `docs/PLAYER_MOVEMENT.md` status reads `APPROVED — implementation and greybox baseline for Vertical Slice v0.1.` with no constant changed.
+- `game/player/player.tscn` root is a `CharacterBody3D` with the capsule, pivot, and camera described above.
+- Capsule full height ≈ 1.80 m and radius ≈ 0.32 m; any deviation is reported.
+- Authored camera offset from the body origin is exactly 1.65 m; `Camera3D.fov` is exactly 70.
+- Exported defaults are 2.0 / 8.0 / 10.0 / 1.65 / 70.0 plus a reported mouse-sensitivity default.
+- Movement is yaw-relative, pitch-independent, and diagonal movement is not faster than forward movement.
+- Gravity comes from `get_gravity()`; grounding is stable on flat floor and ramp with no loss of ground contact.
+- Pitch clamps at approximately ±89°; yaw is unrestricted; no roll, bob, sway, or smoothing exists.
+- Mouse is captured on scene entry and released by Escape; no UI was created.
+- Exactly four movement actions exist in `project.godot`; no sprint, jump, or crouch action exists.
+- The controller contains no state machine, autoload, event bus, or speculative hook for a §13 non-goal.
+- `game/debug/player_movement_sandbox.tscn` loads, instances the player, and contains only primitive verification geometry.
+- The project imports headlessly and the sandbox starts with no parser or runtime script errors.
+- `git diff --check` is clean and no unrelated file changed.
 
 ## Validation Requirements
 
-Report:
-
-- all changed and created files
-- confirmation of no contradiction with `AGENTS.md`, `docs/VERTICAL_SLICE.md`, `docs/WORLD_SCALE.md`, `docs/ARCHITECTURE.md`, `docs/CODING_RULES.md`
-- `git status`, `git diff`, and `git diff --check` inspection
-- confirmation that no game files or project configuration were modified
-- any documentation conflicts found, reported rather than silently resolved
+- `git status`, full `git diff`, and `git diff --check` inspection.
+- Headless Godot project import and a short headless startup smoke test of the sandbox scene.
+- Programmatic structural verification of root type, capsule dimensions, camera offset, FOV, exported defaults, and the Input Map action set.
+- Headless simulation of acceleration, steady speed, deceleration, diagonal speed, wall collision, and ramp ascent/descent ground contact.
+- Truthful reporting that subjective mouse feel cannot be validated headlessly and requires an interactive test by the Project Owner.
 
 ## Gate
 
-**The greybox scale test must not begin until this specification has been reviewed by the Orchestrator.** Greybox geometry authored against unapproved movement constants would have to be re-authored if the constants changed.
+**The Greybox Scale Test must not begin as part of this task.** It is the next backlog item and requires its own authorization.

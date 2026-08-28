@@ -1,6 +1,6 @@
 # PLAYER MOVEMENT SPECIFICATION — v0.1
 
-**Status:** SPECIFICATION — awaiting Orchestrator review. Documentation only. No player controller implementation is authorized by this document.
+**Status:** APPROVED — implementation and greybox baseline for Vertical Slice v0.1.
 
 ---
 
