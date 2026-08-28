@@ -1,10 +1,29 @@
 # ACTIVE TASK — Define First Playable Area Layout
 
-**Status:** NEXT ACTIVE TASK — set 2026-08-28 when the Orchestrator approved the Performance Benchmark Methodology. **NOT BEGUN.** No design, layout, or implementation work for this task may start until the Orchestrator issues its task specification (goal, context, relevant files, requirements, constraints, acceptance criteria). The specification below is intentionally empty.
+**Status:** DELIVERABLE COMPLETE — pending Orchestrator review (2026-08-28). `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` has been written; documentation/design work for this task is **complete**. **No implementation of the layout has started** — no production greybox, scenes, scripts, assets, or project-settings work may begin until the Orchestrator reviews and approves the layout. Do not advance to another task.
 
 ## Specification
 
-*To be provided by the Orchestrator. Do not begin this task without it.*
+**Type:** Architectural / spatial design only. No Godot scenes, no player code, no project settings, no assets, no scripts, no production greyboxing.
+
+**Goal:** Convert the approved Vertical Slice v0.1 (`docs/VERTICAL_SLICE.md`) and the completed, owner-evaluated M1 Greybox Scale Test (`docs/GREYBOX_SCALE_TEST.md`) into one concrete spatial plan for the actual 10–15 minute playable slice — concrete enough that a later implementation task can build the full production greybox without inventing major spatial decisions.
+
+**Core layout principle:** the playable route must feel much smaller than the architecture surrounding it, following the arc *ordinary → compressed → monumental → exposed → overwhelming*. One authored, largely linear route; no branching progression; visible/inaccessible architecture remains a primary scale tool.
+
+**Requirements (delivered in `docs/FIRST_PLAYABLE_AREA_LAYOUT.md`):**
+
+1. Preserve validated player constants unchanged (1.65 m eye height, 2.0 m/s walk, 70° vertical FOV, no sprint/jump/crouch). The layout adapts to the player.
+2. Carry M1 evidence forward: preserve the successful scale concept and variables (~80 m atrium clear height, compression-before-reveal, elevated exterior transition, 800–1200 m neighbouring masses, near/mid/far atmospheric depth). Targeted refinement only for the two 7/10 results (Human Scale rhythm in Beat 1; near-field scale references, including a human-scale object within ~5–10 m of the atrium reveal position).
+3. Four concrete beats with subspaces: Beat 1 Corporate Access ~150 m; Beat 2 Monumental Atrium ~250–260 m retaining the validated ~80 × 64 m / 80 m clear volume with an authored (non-straight) crossing; Beat 3 Elevated Transition ~180–195 m with a ~120–140 m skybridge that does NOT spoil the final vista; Beat 4 Final Vista ~100–110 m containing the strongest reveal.
+4. Critical path ~680–700 m; traversable floor ≤ ~4,000 m² (aim ~3,400–3,900 m²); optional exploration ≤ 25% additional (small dead-end pockets only); playable vertical range ≤ ~120 m; explicit elevation plan with no ground-level climb and no elevator requirement.
+5. Reveal discipline, scale anchor rules, visual wayfinding without UI (waypoint/destination table), two ASCII diagrams (route + elevation), a route budget table, and a mapping of the six `docs/PERFORMANCE_BENCHMARK.md` viewpoint types to named layout locations.
+6. Record the 2.0 m/s vs. ≥ 6:00 direct-traversal arithmetic tension as a validation item for the production greybox (measure in-engine; report conflict to the Orchestrator if unresolved; never silently change player speed or expand scope).
+
+**Constraints:** documentation/design only; do not modify `docs/VERTICAL_SLICE.md` to resolve the timing tension; do not design an architecture kit, materials, lighting, audio, interaction, UI, or any non-goal system; functional spatial names only (no lore).
+
+## Acceptance State (recorded 2026-08-28)
+
+Deliverable: `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` (Status: DRAFT — pending Orchestrator review). Key decisions recorded there: atrium proportion retained at the validated 80 × 64 m / 80 m clear (Option A); floors at 152 m (Beat 1 + atrium) rising to 166 m (egress/skybridge) and 172 m (final overlook), ~20 m playable vertical range; route sums ~692 m main + ~35 m optional; floor area ~3,715 m² main + ~110 m² optional (~3,825 m² total); skybridge 130 m × 6 m running west with hero towers withheld to the north/northwest; final vista facing north/northwest (~90° composition rotation from the bridge axis); benchmark viewpoints mapped to Access lobby / Reveal apron / Column causeway / Reveal apron (upward) / Skybridge mid-span / Observation chamber. Validation performed: arithmetic totals checked (path 147+255+185+105 = 692 m; area 635+1,150+1,070+860 = 3,715 m² main, 3,825 m² incl. optional; optional ≈ 3%; vertical range 20 m), cross-check against `VERTICAL_SLICE.md` §3/§4/§6 and `PLAYER_MOVEMENT.md` (no contradictions; the ≥ 6:00 tension is recorded, not resolved), M1 evidence represented per `GREYBOX_SCALE_TEST.md`, `git diff --check`, full diff review, `git status` (documentation/task files only; no `game/` or `project.godot` changes).
 
 ## Binding Context Already in the Repository
 

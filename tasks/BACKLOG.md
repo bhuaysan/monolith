@@ -8,7 +8,7 @@ The Orchestrator explicitly approved inserting the player controller implementat
 
 ## Active Task
 
-- **Define first playable area layout** — next active task (set 2026-08-28 when the Orchestrator approved the Performance Benchmark Methodology). **Not begun**; the Orchestrator's task specification in `tasks/ACTIVE_TASK.md` is pending and no design or implementation work may start before it exists.
+- **Define first playable area layout** — active task. **Deliverable complete (2026-08-28):** `docs/FIRST_PLAYABLE_AREA_LAYOUT.md` written (Status: DRAFT — pending Orchestrator review). Documentation/design work is complete; **no implementation of the layout has started**. This task remains active and pending Orchestrator review; do not begin production greybox or any other task — the Orchestrator will decide the implementation sequence after reviewing the layout.
 
 ## Pending
 
