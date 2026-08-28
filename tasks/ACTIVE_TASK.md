@@ -2,6 +2,8 @@
 
 **Type:** Documentation/design only. No implementation, no scenes, no scripts, no project settings changes. No subsequent task may start before Orchestrator review.
 
+**Status (2026-08-28):** Methodology delivered — `docs/PERFORMANCE_BENCHMARK.md` created; `docs/PERFORMANCE_BUDGET.md` extended to link it (§ "Relationship to the Benchmark Methodology"). All acceptance criteria below are met. **Pending Orchestrator review.** "Define first playable area layout" remains gated.
+
 ## Goal
 
 Define how MONOLITH measures performance for the remainder of the Vertical Slice, so that all later optimization and visual-quality decisions are made against measured data instead of speculation, per `AGENTS.md` ("performance awareness") and `docs/PERFORMANCE_BUDGET.md` ("optimization should be profiler-driven").
@@ -60,3 +62,19 @@ The methodology document must define:
 ## Gate
 
 **No subsequent task may start before Orchestrator review of this task's results.** "Define first playable area layout" remains blocked until then.
+
+## Acceptance State (recorded 2026-08-28)
+
+Deliverable: `docs/PERFORMANCE_BENCHMARK.md` (new, with `docs/PERFORMANCE_BUDGET.md` extended to link it). Mapping of the seven requirement areas to the methodology document:
+
+| Requirement | Covered by |
+|---|---|
+| 1. Metrics | PERFORMANCE_BENCHMARK.md §6 (timing, rendering complexity, memory, pipeline compilations — with Godot 4.7 `Performance` monitor names) |
+| 2. Measurement procedure | §3 (modes A/B), §4 (headless rule), §5 (environment record), §7 (statistics), §8 (cold/warm), §10 (route), §11 (resolution/graphics configuration) |
+| 3. Reference workloads | §9 (six fixed greybox viewpoints as provisional workload; M3 supersedes), §10 (deterministic route) |
+| 4. Target hardware | §15 — recorded as DEFERRED with owning decision (Project Owner + Orchestrator) and proposed default (Project Owner's development PC, hardware captured per §5) |
+| 5. Budget structure | §1 and §13 (frame-time statistics as the pass/fail basis; verdicts require Mode B) plus the extended PERFORMANCE_BUDGET.md — all exact numbers remain DEFERRED |
+| 6. Regression practice | §13.3–§13.4 (re-measurement triggers, result records under `docs/benchmarks/`, BASELINE/COMPARABLE/NON-COMPARABLE rules) |
+| 7. Escalation rule | §13.5 (diagnosis first, Orchestrator decides; no silent visual-quality reduction) |
+
+Also recorded: the `project.godot` renderer-line canonicalization observation as a repository hygiene note (PERFORMANCE_BENCHMARK.md §17), explicitly not resolved by this task. Validation performed: `git status`, `git diff --check`, full `git diff` review; Godot 4.7 terminology verified against the official 4.7 documentation and the installed Godot 4.7.1 binary; no engine-facing files changed.

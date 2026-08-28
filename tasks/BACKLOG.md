@@ -8,7 +8,7 @@ The Orchestrator explicitly approved inserting the player controller implementat
 
 ## Active Task
 
-- **Define Performance Benchmark Methodology** — now `tasks/ACTIVE_TASK.md`. Documentation/design only: metrics, measurement procedure, reference workloads, target-hardware question, budget structure, regression practice, escalation rule. Final numeric budgets stay deferred where prerequisites (target hardware, M3 benchmark scene) are unresolved.
+- **Define Performance Benchmark Methodology** — delivered (`docs/PERFORMANCE_BENCHMARK.md`; `docs/PERFORMANCE_BUDGET.md` linked to it), **pending Orchestrator review**. Metrics (Godot 4.7 `Performance` monitors), measurement procedure (diagnostic vs representative modes, environment/graphics-config records, cold/warm passes), reference workloads (six fixed greybox viewpoints + deterministic route), target-hardware question (DEFERRED with proposed default), budget structure (all exact numbers DEFERRED until hardware + M3 benchmark scene), regression practice, escalation rule. "Define first playable area layout" remains gated until Orchestrator review passes.
 
 ## Pending
 
