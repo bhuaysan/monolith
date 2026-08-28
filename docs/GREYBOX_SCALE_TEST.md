@@ -1,6 +1,6 @@
 # GREYBOX SCALE TEST
 
-**Status:** IMPLEMENTED — automated validation complete. Subjective scale evaluation **pending Project Owner play test**.
+**Status:** COMPLETED (2026-08-28) — automated validation passed; Project Owner manual evaluation recorded (below). M1 subjective gates are PASS.
 
 ---
 
@@ -21,10 +21,11 @@ never the player constants (`docs/PLAYER_MOVEMENT.md`).
 | Type | State |
 |---|---|
 | Automated (headless import, scene load, scripted physics traversal, constant checks) | **Complete — passed** |
-| Owner subjective evaluation (scale shock, verticality, comfort, pacing) | **Pending** |
+| Owner subjective evaluation (scale shock, verticality, comfort, pacing) | **Complete — passed, recorded below** |
 
-Automated validation cannot judge perceived scale. Do not treat this task as complete
-until the Project Owner has played the scene and answered the evaluation questions below.
+The two 7/10 ratings are preserved as observations for later architecture/art refinement,
+not as greybox defects. No geometry, player constant, FOV, movement speed, lighting, or
+architecture was changed in response to the ratings.
 
 ## Scene Path
 
@@ -172,8 +173,7 @@ is reproducible from this document. Walk speed was not adjusted to influence tim
 5. Compression corridor C is a dead-straight 22.5 m run; the only turn is in corridor B.
 6. Exterior tower geometry is single boxes with crowns; correct only from the authored
    vista sightlines, per the world-illusion strategy.
-7. Automated validation proves geometry, collision and constants only. **No subjective
-   scale claim is validated headlessly.**
+7. Automated validation proves geometry, collision and constants only. **No subjective scale claim is validated headlessly.**
 
 ## Project Owner Evaluation Questions
 
@@ -185,6 +185,44 @@ is reproducible from this document. Walk speed was not adjusted to influence tim
 - **FOV:** Does 70° vertical FOV support scale without obvious distortion?
 - **Movement:** Does 2.0 m/s reinforce scale without becoming tedious here?
 - **Skybridge / exposure:** Does the elevated transition create a believable sense of height and depth?
+
+## Project Owner Evaluation — M1 (recorded 2026-08-28)
+
+The Project Owner played the greybox and returned the following scores:
+
+| # | Evaluation | Score |
+|---|---|---:|
+| 1 | Human Scale (Zone A) | 7/10 |
+| 2 | Reveal (Zone C entry) | 8/10 |
+| 3 | Atrium (monumental interior) | 9/10 |
+| 4 | Instinctive Upward Look | 10/10 |
+| 5 | Scale References (legibility) | 7/10 |
+| 6 | Skybridge Height/Depth | 9/10 |
+| 7 | Megatowers (exterior scale) | 10/10 |
+| 8 | Overall MONOLITH Feeling | 9/10 |
+
+### M1 Subjective Gates — PASS
+
+| Gate (from `tasks/ACTIVE_TASK.md`) | Result | Evidence |
+|---|---|---|
+| Perceived human scale (Zone A) | **PASS** | 7/10 Human Scale |
+| Atrium impact and reveal shock (Zone C) | **PASS** | 9/10 Atrium, 8/10 Reveal |
+| Instinctive upward look in the atrium | **PASS** | 10/10 |
+| Exterior megastructure effect (Zone D towers) | **PASS** | 10/10 Megatowers |
+| Comfort and movement pacing at 2.0 m/s | **PASS** | Covered by the owner's overall evaluation (Overall MONOLITH Feeling 9/10); no separate numeric score was recorded for FOV or pacing |
+
+Verdict: the core scale fantasy works in-engine with primitive geometry. M1 evaluation is complete.
+
+### Refinement Observations (not greybox defects)
+
+The two 7/10 ratings are carried forward as observations for later architecture and art
+refinement. They do not invalidate the greybox, and no greybox geometry, player constant,
+FOV, movement speed, lighting, or architecture was changed in response to them:
+
+- **Human Scale — 7/10:** Zone A reads as normal architecture; its ordinary/institutional
+  character can be strengthened during the first playable area layout and art passes.
+- **Scale References — 7/10:** near-field references carry the scale comparison; their
+  density, placement, and legibility can be refined during layout and art passes.
 
 ## Decisions Requiring Later Review
 

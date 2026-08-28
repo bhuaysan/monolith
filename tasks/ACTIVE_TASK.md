@@ -1,80 +1,62 @@
-# ACTIVE TASK — Build Greybox Scale Test
+# ACTIVE TASK — Define Performance Benchmark Methodology
 
-**Type:** Implementation. Scale/composition experiment only. Production art is forbidden. No subsequent task may start before Orchestrator review.
+**Type:** Documentation/design only. No implementation, no scenes, no scripts, no project settings changes. No subsequent task may start before Orchestrator review.
 
 ## Goal
 
-Build one deliberately simple playable greybox scene, `game/world/greybox_scale_test.tscn`, that lets the Project Owner judge in-engine whether MONOLITH's core architectural scale fantasy works using the approved player constants:
+Define how MONOLITH measures performance for the remainder of the Vertical Slice, so that all later optimization and visual-quality decisions are made against measured data instead of speculation, per `AGENTS.md` ("performance awareness") and `docs/PERFORMANCE_BUDGET.md` ("optimization should be profiler-driven").
 
-1. human architectural scale
-2. compression
-3. monumental interior scale
-4. vertical perception
-5. exterior megastructure scale
-6. contrast between those scales
+The task answers:
 
-The greybox answers one question:
-
-> Does MONOLITH already feel impressive when everything is still primitive geometry?
-
-If not, adding art later will not solve the core problem.
+> What do we measure, how do we measure it, against which budgets, and on which target hardware — before the benchmark scene exists?
 
 ## Context
 
-- Player Controller v0.1 is **closed**: it passed automated validation and Project Owner interactive validation. The owner confirmed movement feels acceptable and approved the controller test (commit `a436c2a`). The approved constants in `docs/PLAYER_MOVEMENT.md` are frozen for greybox authoring: eye height 1.65 m, walk speed 2.0 m/s, vertical FOV 70°, acceleration 8.0 m/s², deceleration 10.0 m/s², no sprint, no jump, no crouch.
-- This is a **scale/composition experiment**, not the Vertical Slice and not the 400–700 m route.
-- **Production art is forbidden.** Primitive meshes, primitive collision, simple materials, basic lighting, and environment settings for readability only. No textures, decals, signage art, decorative props, neon, or detailed materials.
-- Player constants must not be changed. If something reads wrong, the architecture changes — not the player.
+- M1 (Build Greybox Scale Test) is **completed**: automated validation passed and the Project Owner's manual evaluation is recorded in `docs/GREYBOX_SCALE_TEST.md`. M1 subjective gates are PASS.
+- `docs/PERFORMANCE_BUDGET.md` (Status: DRAFT) states that exact GPU, CPU, memory, and frame-time budgets will be defined after the first benchmark scene and target hardware are selected. This task defines the **methodology** that makes those definitions possible; it does not itself fix final numeric budgets where a prerequisite (hardware, benchmark scene) is still missing, and must mark any such value as explicitly deferred rather than invented.
+- The Vertical Slice requires a stable frame rate at high visual quality (`docs/VERTICAL_SLICE.md` §14, criterion 16), but the performance budget numbers cannot be finalized until the methodology task and the later benchmark scene (M3) exist.
+- This is a predecessor to, not a substitute for, M3 — Lighting Prototype, which will produce the representative benchmark scene.
 
 ## Relevant Files
 
-- `game/world/greybox_scale_test.tscn` — the greybox scene (instances `game/player/player.tscn`)
-- `docs/GREYBOX_SCALE_TEST.md` — measurement record, test procedure, limitations
-- `docs/VERTICAL_SLICE.md`, `docs/PLAYER_MOVEMENT.md`, `docs/WORLD_SCALE.md`, `docs/ART_DIRECTION.md`, `docs/ARCHITECTURE.md`, `docs/PERFORMANCE_BUDGET.md`
+- `docs/PERFORMANCE_BUDGET.md` — expected primary output location (or a dedicated methodology document, if the structure demands it)
+- `docs/VERTICAL_SLICE.md` — §14 success criteria and scope bounds the methodology must serve
+- `docs/GREYBOX_SCALE_TEST.md` — measured prototype facts (scene composition, node/material counts) usable as first workload references
+- `docs/ROADMAP.md` — milestone context (M3 produces the benchmark scene)
 - `tasks/BACKLOG.md`
 
 ## Requirements
 
-### Spatial sequence (four connected zones)
+The methodology document must define:
 
-- **Zone A — Human Scale:** restrained corporate interior. Ceiling ≈ 3.0 m, corridor width ≈ 2.5–3.5 m, door/opening heights 2.2–2.5 m, short sightlines. Human-scale references (door frames, railings, wall recess, bench blocks, ceiling light troughs, columns). Ordinary and controlled — must not look impressive.
-- **Zone B — Compression Transition:** narrow low-ceiling passage with a turn and no early sightline into the atrium. The reveal must be delayed until the threshold.
-- **Zone C — Monumental Atrium:** interior height **80 m** (within the approved 60–100 m range), footprint ~50–70 m wide × 70–100 m long. Multiple inaccessible upper floors/balconies, structural columns, elevated bridges, wall recesses, distant openings, and human-scale doors/railings near the player. Repeated vertical references (floor bands on a ~4 m module) giving at least ~15–20 readable vertical subdivisions. Deliberate reveal on entry; first instinct should be to look upward.
-- **Zone D — Exterior / Megastructure Vista:** elevated observation passage/skybridge-like deck, player ~150–250 m above an implied (unplayable) ground level. At least 3 major neighbouring tower masses at ~800–1200 m, multiple distance layers, large structural silhouettes. Atmosphere/fog used for depth. The exterior must imply far more architecture than is playable.
+1. **Metrics** — which quantities are tracked (e.g. frame time, FPS distribution/percentiles, GPU/CPU frame cost, draw calls, memory, asset/VRAM footprint) and why each matters for a graphics-focused Forward+ exploration experience.
+2. **Measurement procedure** — how a scene is measured reproducibly in Godot 4 (e.g. profiler usage, headless vs. interactive runs, fixed camera paths, capture duration, warm-up rules), so results are comparable across sessions and tasks.
+3. **Reference workloads** — which scenes/states act as measurement points (the greybox scale test can serve as the first provisional workload until M3 provides a representative benchmark scene).
+4. **Target hardware** — the hardware specification question must be raised and either resolved by the Orchestrator/Project Owner within this task or explicitly recorded as a blocking deferral with a proposed default.
+5. **Budget structure** — the frame-time/memory budget framework (targets and thresholds, how pass/fail is decided), with concrete numbers only where prerequisites allow and explicit `DEFERRED` markers elsewhere.
+6. **Regression practice** — when and how performance is re-measured during development (which milestones/tasks trigger a measurement pass), and how results are recorded.
+7. **Escalation rule** — what happens when a measurement fails its budget (who decides: cut scope, defer quality, or optimize; per the repository's authority model).
 
-### Constraints
+## Constraints
 
-- Route length ≈ 150–250 m; vista reachable in ~3–6 minutes including observation.
-- No jump, crouch, or precision traversal anywhere; stairs (if visual) use simple ramp collision underneath.
-- Every traversable surface has reliable simple collision.
-- No gameplay systems, interaction, audio, NPCs, elevators, moving objects, UI, LOD systems, third-party assets, plugins, or M2/Architecture Kit work.
-- Player scale/speed/FOV unchanged.
+- Documentation/design only. No Godot scenes, scripts, autoloads, project settings, plugins, or benchmark tooling may be created or modified.
+- Do not set final numeric budgets that depend on unresolved prerequisites (target hardware, benchmark scene); mark them `DEFERRED` with the owning decision named.
+- Do not start M3 (Lighting Prototype) or any backlog item beyond this task.
+- Keep the output consistent with `AGENTS.md`, `docs/ARCHITECTURE.md`, and the Vertical Slice scope; prefer simple, reproducible practice over elaborate tooling proposals.
 
 ## Acceptance Criteria
 
-### Automated acceptance (validated — see `docs/GREYBOX_SCALE_TEST.md` for measured values)
-
-- `game/world/greybox_scale_test.tscn` exists, imports, loads, and runs headlessly with no parser or runtime errors.
-- The scene instances the approved player scene unmodified; no movement constant changed; no new gameplay Input Map action added.
-- The four zones are connected and traversable with primitive geometry only, walking only (scripted full-route physics walk: ~196 m, zero falls, zero stalls).
-- Atrium interior height ≈ 80 m (measured 80.0 m); vista elevation ≈ 150–250 m above implied ground (measured 162.4 m); three towers in the 800–1200 m range (measured 1000 / 880 / 1150 m).
-- Human-scale reference geometry is visible near the player in the atrium and at the vista.
-- Scene is the development main scene so the Project Owner can play it directly.
-
-### Owner acceptance (PENDING — must not be marked complete by an agent)
-
-- perceived human scale (Zone A)
-- atrium impact and reveal shock (Zone C)
-- instinctive upward look in the atrium
-- exterior megastructure effect (Zone D towers)
-- comfort, and movement pacing at 2.0 m/s
+- The methodology is written down in the repository (extended `docs/PERFORMANCE_BUDGET.md` or a clearly linked dedicated document) and covers all seven requirement areas above.
+- Every metric has a defined measurement procedure; every deferred value is explicitly marked `DEFERRED` with the decision that must close it.
+- The methodology is reviewable by the Orchestrator and Project Owner without running the engine.
+- No engine-facing files are changed; `git status` shows documentation/task changes only.
 
 ## Validation Requirements
 
 - `git status`, full `git diff`, `git diff --check`.
-- Headless Godot import, short headless smoke run of the scene, programmatic verification (player instance, constants, Input Map, zone dimensions, tower heights, route length).
-- Manual play test by the Project Owner with the route notes provided in the implementation report.
+- Markdown structure review of all edited documents.
+- Cross-check against `docs/VERTICAL_SLICE.md` §14 and `docs/ROADMAP.md` for contradictions; report any conflict instead of resolving it silently.
 
 ## Gate
 
-**No subsequent task may start before Orchestrator review of this task's results.** The next backlog items ("Define performance benchmark methodology", "Define first playable area layout") remain blocked until then.
+**No subsequent task may start before Orchestrator review of this task's results.** "Define first playable area layout" remains blocked until then.
