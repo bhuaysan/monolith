@@ -48,6 +48,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		_apply_mouse_look(event as InputEventMouseMotion)
 	elif event.is_action_pressed(&"ui_cancel"):
 		_release_mouse()
+	elif (
+		event is InputEventMouseButton
+		and event.button_index == MOUSE_BUTTON_LEFT
+		and event.is_pressed()
+		and Input.mouse_mode != Input.MOUSE_MODE_CAPTURED
+	):
+		# Development usability: left click recaptures the mouse after
+		# releasing it with Escape. No gameplay behaviour is attached.
+		_capture_mouse()
 
 
 func _physics_process(delta: float) -> void:

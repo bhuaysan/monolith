@@ -21,7 +21,7 @@ If not, adding art later will not solve the core problem.
 
 ## Context
 
-- Player Controller v0.1 is **approved** (`game/player/player.tscn`, `game/player/player_controller.gd`, commit `a436c2a`), implementing the approved constants in `docs/PLAYER_MOVEMENT.md`: eye height 1.65 m, walk speed 2.0 m/s, FOV 70° vertical.
+- Player Controller v0.1 is **closed**: it passed automated validation and Project Owner interactive validation. The owner confirmed movement feels acceptable and approved the controller test (commit `a436c2a`). The approved constants in `docs/PLAYER_MOVEMENT.md` are frozen for greybox authoring: eye height 1.65 m, walk speed 2.0 m/s, vertical FOV 70°, acceleration 8.0 m/s², deceleration 10.0 m/s², no sprint, no jump, no crouch.
 - This is a **scale/composition experiment**, not the Vertical Slice and not the 400–700 m route.
 - **Production art is forbidden.** Primitive meshes, primitive collision, simple materials, basic lighting, and environment settings for readability only. No textures, decals, signage art, decorative props, neon, or detailed materials.
 - Player constants must not be changed. If something reads wrong, the architecture changes — not the player.
@@ -29,6 +29,7 @@ If not, adding art later will not solve the core problem.
 ## Relevant Files
 
 - `game/world/greybox_scale_test.tscn` — the greybox scene (instances `game/player/player.tscn`)
+- `docs/GREYBOX_SCALE_TEST.md` — measurement record, test procedure, limitations
 - `docs/VERTICAL_SLICE.md`, `docs/PLAYER_MOVEMENT.md`, `docs/WORLD_SCALE.md`, `docs/ART_DIRECTION.md`, `docs/ARCHITECTURE.md`, `docs/PERFORMANCE_BUDGET.md`
 - `tasks/BACKLOG.md`
 
@@ -51,13 +52,22 @@ If not, adding art later will not solve the core problem.
 
 ## Acceptance Criteria
 
+### Automated acceptance (validated — see `docs/GREYBOX_SCALE_TEST.md` for measured values)
+
 - `game/world/greybox_scale_test.tscn` exists, imports, loads, and runs headlessly with no parser or runtime errors.
 - The scene instances the approved player scene unmodified; no movement constant changed; no new gameplay Input Map action added.
-- The four zones are connected and traversable with primitive geometry only.
-- Atrium interior height ≈ 80 m; vista elevation ≈ 150–250 m above implied ground; at least 3 towers in the 800–1200 m range.
+- The four zones are connected and traversable with primitive geometry only, walking only (scripted full-route physics walk: ~196 m, zero falls, zero stalls).
+- Atrium interior height ≈ 80 m (measured 80.0 m); vista elevation ≈ 150–250 m above implied ground (measured 162.4 m); three towers in the 800–1200 m range (measured 1000 / 880 / 1150 m).
 - Human-scale reference geometry is visible near the player in the atrium and at the vista.
 - Scene is the development main scene so the Project Owner can play it directly.
-- **Completion requires Project Owner manual evaluation** of the subjective scale questions below. Headless validation alone does not complete this task.
+
+### Owner acceptance (PENDING — must not be marked complete by an agent)
+
+- perceived human scale (Zone A)
+- atrium impact and reveal shock (Zone C)
+- instinctive upward look in the atrium
+- exterior megastructure effect (Zone D towers)
+- comfort, and movement pacing at 2.0 m/s
 
 ## Validation Requirements
 
