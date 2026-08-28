@@ -1,0 +1,3938 @@
+[gd_scene load_steps=259 format=3]
+
+[ext_resource type="PackedScene" path="res://game/player/player.tscn" id="1_player"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_material"]
+sky_top_color = Color(0.36, 0.45, 0.58, 1)
+sky_horizon_color = Color(0.74, 0.76, 0.78, 1)
+ground_bottom_color = Color(0.3, 0.31, 0.33, 1)
+ground_horizon_color = Color(0.7, 0.72, 0.74, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_material")
+
+[sub_resource type="Environment" id="environment"]
+background_mode = 2
+sky = SubResource("sky")
+ambient_light_source = 3
+ambient_light_energy = 1.0
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.75, 0.78, 0.82, 1)
+fog_density = 0.0012
+fog_aerial_perspective = 0.2
+fog_sky_affect = 0.1
+fog_height = 60.0
+fog_height_density = 0.06
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.6, 0.6, 0.58, 1)
+metallic = 0
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.45, 0.45, 0.44, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_ceiling"]
+albedo_color = Color(0.32, 0.32, 0.33, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_structure"]
+albedo_color = Color(0.36, 0.35, 0.33, 1)
+metallic = 0
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_dark"]
+albedo_color = Color(0.13, 0.13, 0.14, 1)
+metallic = 0
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="mat_rail"]
+albedo_color = Color(0.2, 0.2, 0.21, 1)
+metallic = 0.4
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_light"]
+albedo_color = Color(0.92, 0.92, 0.9, 1)
+metallic = 0
+roughness = 1
+emission_enabled = true
+emission = Color(1, 0.98, 0.92, 1)
+emission_energy_multiplier = 2
+
+[sub_resource type="StandardMaterial3D" id="mat_debug"]
+albedo_color = Color(0.85, 0.62, 0.3, 1)
+metallic = 0
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_ext"]
+albedo_color = Color(0.42, 0.42, 0.43, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_ext2"]
+albedo_color = Color(0.37, 0.37, 0.385, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_ext3"]
+albedo_color = Color(0.3, 0.31, 0.33, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_ground"]
+albedo_color = Color(0.15, 0.15, 0.16, 1)
+metallic = 0
+roughness = 1
+
+[sub_resource type="BoxMesh" id="mesh_000"]
+size = Vector3(46.5, 0.5, 17)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_000"]
+size = Vector3(46.5, 0.5, 17)
+
+[sub_resource type="BoxMesh" id="mesh_001"]
+size = Vector3(0.5, 3.5, 11)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_001"]
+size = Vector3(0.5, 3.5, 11)
+
+[sub_resource type="BoxMesh" id="mesh_002"]
+size = Vector3(13, 3.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_002"]
+size = Vector3(13, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_003"]
+size = Vector3(3.5, 3.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_003"]
+size = Vector3(3.5, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_004"]
+size = Vector3(7.5, 3.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_004"]
+size = Vector3(7.5, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_005"]
+size = Vector3(2, 1.3, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_005"]
+size = Vector3(2, 1.3, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_006"]
+size = Vector3(0.2, 2.2, 0.6)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_006"]
+size = Vector3(0.2, 2.2, 0.6)
+
+[sub_resource type="BoxMesh" id="mesh_007"]
+size = Vector3(2, 2.2, 0.1)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_007"]
+size = Vector3(2, 2.2, 0.1)
+
+[sub_resource type="BoxMesh" id="mesh_008"]
+size = Vector3(13, 0.5, 11)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_008"]
+size = Vector3(13, 0.5, 11)
+
+[sub_resource type="BoxMesh" id="mesh_009"]
+size = Vector3(10, 0.1, 0.3)
+material = SubResource("mat_light")
+
+[sub_resource type="BoxShape3D" id="shape_009"]
+size = Vector3(10, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_010"]
+size = Vector3(0.45, 3, 0.45)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_010"]
+size = Vector3(0.45, 3, 0.45)
+
+[sub_resource type="BoxMesh" id="mesh_011"]
+size = Vector3(2, 0.45, 0.5)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_011"]
+size = Vector3(2, 0.45, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_012"]
+size = Vector3(2, 0.4, 0.6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_012"]
+size = Vector3(2, 0.4, 0.6)
+
+[sub_resource type="BoxMesh" id="mesh_013"]
+size = Vector3(0.05, 1.1, 0.05)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_013"]
+size = Vector3(0.05, 1.1, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh_014"]
+size = Vector3(2, 0.1, 0.05)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_014"]
+size = Vector3(2, 0.1, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh_015"]
+size = Vector3(0.5, 3.5, 4.6)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_015"]
+size = Vector3(0.5, 3.5, 4.6)
+
+[sub_resource type="BoxMesh" id="mesh_016"]
+size = Vector3(0.5, 1.2, 1.8)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_016"]
+size = Vector3(0.5, 1.2, 1.8)
+
+[sub_resource type="BoxMesh" id="mesh_017"]
+size = Vector3(0.2, 2.3, 0.15)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_017"]
+size = Vector3(0.2, 2.3, 0.15)
+
+[sub_resource type="BoxMesh" id="mesh_018"]
+size = Vector3(0.2, 0.15, 2.1)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_018"]
+size = Vector3(0.2, 0.15, 2.1)
+
+[sub_resource type="BoxMesh" id="mesh_019"]
+size = Vector3(8.5, 3.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_019"]
+size = Vector3(8.5, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_020"]
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_020"]
+size = Vector3(12, 3.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_021"]
+size = Vector3(12, 0.5, 4)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_021"]
+size = Vector3(12, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="mesh_022"]
+size = Vector3(8, 0.1, 0.3)
+material = SubResource("mat_light")
+
+[sub_resource type="BoxShape3D" id="shape_022"]
+size = Vector3(8, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_023"]
+size = Vector3(0.2, 0.15, 3.14)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_023"]
+size = Vector3(0.2, 0.15, 3.14)
+
+[sub_resource type="BoxMesh" id="mesh_024"]
+size = Vector3(0.5, 3.5, 8.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_024"]
+size = Vector3(0.5, 3.5, 8.5)
+
+[sub_resource type="BoxMesh" id="mesh_025"]
+size = Vector3(0.5, 3.5, 10.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_025"]
+size = Vector3(0.5, 3.5, 10.5)
+
+[sub_resource type="BoxMesh" id="mesh_026"]
+size = Vector3(0.5, 0.9, 1.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_026"]
+size = Vector3(0.5, 0.9, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_027"]
+size = Vector3(4, 0.5, 9)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_027"]
+size = Vector3(4, 0.5, 9)
+
+[sub_resource type="BoxMesh" id="mesh_028"]
+size = Vector3(0.2, 0.1, 7.5)
+material = SubResource("mat_light")
+
+[sub_resource type="BoxShape3D" id="shape_028"]
+size = Vector3(0.2, 0.1, 7.5)
+
+[sub_resource type="BoxMesh" id="mesh_029"]
+size = Vector3(21.5, 3, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_029"]
+size = Vector3(21.5, 3, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_030"]
+size = Vector3(22.5, 0.4, 3)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_030"]
+size = Vector3(22.5, 0.4, 3)
+
+[sub_resource type="BoxMesh" id="mesh_031"]
+size = Vector3(18, 0.1, 0.2)
+material = SubResource("mat_light")
+
+[sub_resource type="BoxShape3D" id="shape_031"]
+size = Vector3(18, 0.1, 0.2)
+
+[sub_resource type="BoxMesh" id="mesh_032"]
+size = Vector3(82, 0.5, 65)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_032"]
+size = Vector3(82, 0.5, 65)
+
+[sub_resource type="BoxMesh" id="mesh_033"]
+size = Vector3(1, 80, 41.75)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_033"]
+size = Vector3(1, 80, 41.75)
+
+[sub_resource type="BoxMesh" id="mesh_034"]
+size = Vector3(1, 80, 21.75)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_034"]
+size = Vector3(1, 80, 21.75)
+
+[sub_resource type="BoxMesh" id="mesh_035"]
+size = Vector3(1, 77.5, 1.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_035"]
+size = Vector3(1, 77.5, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_036"]
+size = Vector3(0.15, 2.5, 0.15)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_036"]
+size = Vector3(0.15, 2.5, 0.15)
+
+[sub_resource type="BoxMesh" id="mesh_037"]
+size = Vector3(0.15, 0.15, 1.8)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_037"]
+size = Vector3(0.15, 0.15, 1.8)
+
+[sub_resource type="BoxMesh" id="mesh_038"]
+size = Vector3(82, 80, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_038"]
+size = Vector3(82, 80, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_039"]
+size = Vector3(1, 80, 31.6)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_039"]
+size = Vector3(1, 80, 31.6)
+
+[sub_resource type="BoxMesh" id="mesh_040"]
+size = Vector3(1, 2.4, 1.8)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_040"]
+size = Vector3(1, 2.4, 1.8)
+
+[sub_resource type="BoxMesh" id="mesh_041"]
+size = Vector3(1, 77.5, 1.8)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_041"]
+size = Vector3(1, 77.5, 1.8)
+
+[sub_resource type="BoxMesh" id="mesh_042"]
+size = Vector3(82, 0.5, 27.5)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_042"]
+size = Vector3(82, 0.5, 27.5)
+
+[sub_resource type="BoxMesh" id="mesh_043"]
+size = Vector3(82, 0.6, 0.5)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_043"]
+size = Vector3(82, 0.6, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_044"]
+size = Vector3(0.5, 0.6, 64)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_044"]
+size = Vector3(0.5, 0.6, 64)
+
+[sub_resource type="BoxMesh" id="mesh_045"]
+size = Vector3(82, 0.6, 0.7)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_045"]
+size = Vector3(82, 0.6, 0.7)
+
+[sub_resource type="BoxMesh" id="mesh_046"]
+size = Vector3(0.7, 0.6, 64)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_046"]
+size = Vector3(0.7, 0.6, 64)
+
+[sub_resource type="BoxMesh" id="mesh_047"]
+size = Vector3(30, 0.4, 3)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_047"]
+size = Vector3(30, 0.4, 3)
+
+[sub_resource type="BoxMesh" id="mesh_048"]
+size = Vector3(30, 1.1, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_048"]
+size = Vector3(30, 1.1, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_049"]
+size = Vector3(8, 2.8, 0.15)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_049"]
+size = Vector3(8, 2.8, 0.15)
+
+[sub_resource type="BoxMesh" id="mesh_050"]
+size = Vector3(3, 0.5, 64)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_050"]
+size = Vector3(3, 0.5, 64)
+
+[sub_resource type="BoxMesh" id="mesh_051"]
+size = Vector3(0.12, 1.1, 64)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_051"]
+size = Vector3(0.12, 1.1, 64)
+
+[sub_resource type="BoxMesh" id="mesh_052"]
+size = Vector3(80, 0.5, 3)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_052"]
+size = Vector3(80, 0.5, 3)
+
+[sub_resource type="BoxMesh" id="mesh_053"]
+size = Vector3(80, 1.1, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_053"]
+size = Vector3(80, 1.1, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_054"]
+size = Vector3(4, 80, 4)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_054"]
+size = Vector3(4, 80, 4)
+
+[sub_resource type="BoxMesh" id="mesh_055"]
+size = Vector3(5, 1.2, 5)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_055"]
+size = Vector3(5, 1.2, 5)
+
+[sub_resource type="BoxMesh" id="mesh_056"]
+size = Vector3(0.5, 4, 3.6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_056"]
+size = Vector3(0.5, 4, 3.6)
+
+[sub_resource type="BoxMesh" id="mesh_057"]
+size = Vector3(2, 0.45, 0.6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_057"]
+size = Vector3(2, 0.45, 0.6)
+
+[sub_resource type="BoxMesh" id="mesh_058"]
+size = Vector3(1.2, 2.3, 0.1)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_058"]
+size = Vector3(1.2, 2.3, 0.1)
+
+[sub_resource type="BoxMesh" id="mesh_059"]
+size = Vector3(0.1, 3.4, 12)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_059"]
+size = Vector3(0.1, 3.4, 12)
+
+[sub_resource type="BoxMesh" id="mesh_060"]
+size = Vector3(0.15, 0.8, 10)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_060"]
+size = Vector3(0.15, 0.8, 10)
+
+[sub_resource type="BoxMesh" id="mesh_061"]
+size = Vector3(12, 0.5, 20)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_061"]
+size = Vector3(12, 0.5, 20)
+
+[sub_resource type="BoxMesh" id="mesh_062"]
+size = Vector3(1.5, 1.9, 1.5)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_062"]
+size = Vector3(1.5, 1.9, 1.5)
+
+[sub_resource type="BoxMesh" id="mesh_063"]
+size = Vector3(0.12, 1.1, 7)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_063"]
+size = Vector3(0.12, 1.1, 7)
+
+[sub_resource type="BoxMesh" id="mesh_064"]
+size = Vector3(12, 1.1, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_064"]
+size = Vector3(12, 1.1, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_065"]
+size = Vector3(6.3, 0.12, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_065"]
+size = Vector3(6.3, 0.12, 6)
+
+[sub_resource type="BoxMesh" id="mesh_066"]
+size = Vector3(5.88, 0.28, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_066"]
+size = Vector3(5.88, 0.28, 6)
+
+[sub_resource type="BoxMesh" id="mesh_067"]
+size = Vector3(5.46, 0.44, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_067"]
+size = Vector3(5.46, 0.44, 6)
+
+[sub_resource type="BoxMesh" id="mesh_068"]
+size = Vector3(5.04, 0.6, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_068"]
+size = Vector3(5.04, 0.6, 6)
+
+[sub_resource type="BoxMesh" id="mesh_069"]
+size = Vector3(4.62, 0.76, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_069"]
+size = Vector3(4.62, 0.76, 6)
+
+[sub_resource type="BoxMesh" id="mesh_070"]
+size = Vector3(4.2, 0.92, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_070"]
+size = Vector3(4.2, 0.92, 6)
+
+[sub_resource type="BoxMesh" id="mesh_071"]
+size = Vector3(3.78, 1.08, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_071"]
+size = Vector3(3.78, 1.08, 6)
+
+[sub_resource type="BoxMesh" id="mesh_072"]
+size = Vector3(3.36, 1.24, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_072"]
+size = Vector3(3.36, 1.24, 6)
+
+[sub_resource type="BoxMesh" id="mesh_073"]
+size = Vector3(2.94, 1.4, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_073"]
+size = Vector3(2.94, 1.4, 6)
+
+[sub_resource type="BoxMesh" id="mesh_074"]
+size = Vector3(2.52, 1.56, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_074"]
+size = Vector3(2.52, 1.56, 6)
+
+[sub_resource type="BoxMesh" id="mesh_075"]
+size = Vector3(2.1, 1.72, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_075"]
+size = Vector3(2.1, 1.72, 6)
+
+[sub_resource type="BoxMesh" id="mesh_076"]
+size = Vector3(1.68, 1.88, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_076"]
+size = Vector3(1.68, 1.88, 6)
+
+[sub_resource type="BoxMesh" id="mesh_077"]
+size = Vector3(1.26, 2.04, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_077"]
+size = Vector3(1.26, 2.04, 6)
+
+[sub_resource type="BoxMesh" id="mesh_078"]
+size = Vector3(0.84, 2.2, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_078"]
+size = Vector3(0.84, 2.2, 6)
+
+[sub_resource type="BoxMesh" id="mesh_079"]
+size = Vector3(0.42, 2.36, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_079"]
+size = Vector3(0.42, 2.36, 6)
+
+[sub_resource type="BoxMesh" id="mesh_080"]
+size = Vector3(7.1357, 0.5, 6)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_080"]
+size = Vector3(7.1357, 0.5, 6)
+
+[sub_resource type="BoxMesh" id="mesh_081"]
+size = Vector3(7.1357, 1.1, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_081"]
+size = Vector3(7.1357, 1.1, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_082"]
+size = Vector3(0.15, 0.15, 2.1)
+material = SubResource("mat_dark")
+
+[sub_resource type="BoxShape3D" id="shape_082"]
+size = Vector3(0.15, 0.15, 2.1)
+
+[sub_resource type="BoxMesh" id="mesh_083"]
+size = Vector3(11.5, 0.5, 4)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_083"]
+size = Vector3(11.5, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="mesh_084"]
+size = Vector3(11.1, 3.6, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_084"]
+size = Vector3(11.1, 3.6, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_085"]
+size = Vector3(11.6, 0.4, 4)
+material = SubResource("mat_ceiling")
+
+[sub_resource type="BoxShape3D" id="shape_085"]
+size = Vector3(11.6, 0.4, 4)
+
+[sub_resource type="BoxMesh" id="mesh_086"]
+size = Vector3(9, 0.1, 0.3)
+material = SubResource("mat_light")
+
+[sub_resource type="BoxShape3D" id="shape_086"]
+size = Vector3(9, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh_087"]
+size = Vector3(0.6, 1, 4)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_087"]
+size = Vector3(0.6, 1, 4)
+
+[sub_resource type="BoxMesh" id="mesh_088"]
+size = Vector3(40, 0.5, 6)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_088"]
+size = Vector3(40, 0.5, 6)
+
+[sub_resource type="BoxMesh" id="mesh_089"]
+size = Vector3(40, 0.6, 0.4)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_089"]
+size = Vector3(40, 0.6, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh_090"]
+size = Vector3(40, 0.06, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_090"]
+size = Vector3(40, 0.06, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_091"]
+size = Vector3(0.12, 1.15, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_091"]
+size = Vector3(0.12, 1.15, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_092"]
+size = Vector3(3, 161.3, 3)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_092"]
+size = Vector3(3, 161.3, 3)
+
+[sub_resource type="BoxMesh" id="mesh_093"]
+size = Vector3(14, 0.5, 14)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_093"]
+size = Vector3(14, 0.5, 14)
+
+[sub_resource type="BoxMesh" id="mesh_094"]
+size = Vector3(14, 0.6, 13.2)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_094"]
+size = Vector3(14, 0.6, 13.2)
+
+[sub_resource type="BoxMesh" id="mesh_095"]
+size = Vector3(4, 161.3, 4)
+material = SubResource("mat_structure")
+
+[sub_resource type="BoxShape3D" id="shape_095"]
+size = Vector3(4, 161.3, 4)
+
+[sub_resource type="BoxMesh" id="mesh_096"]
+size = Vector3(0.06, 0.06, 14)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_096"]
+size = Vector3(0.06, 0.06, 14)
+
+[sub_resource type="BoxMesh" id="mesh_097"]
+size = Vector3(14, 0.06, 0.06)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_097"]
+size = Vector3(14, 0.06, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh_098"]
+size = Vector3(0.06, 1.15, 0.12)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_098"]
+size = Vector3(0.06, 1.15, 0.12)
+
+[sub_resource type="BoxMesh" id="mesh_099"]
+size = Vector3(59.5, 420, 160)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_099"]
+size = Vector3(59.5, 420, 160)
+
+[sub_resource type="BoxMesh" id="mesh_100"]
+size = Vector3(138.5, 240, 47.5)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_100"]
+size = Vector3(138.5, 240, 47.5)
+
+[sub_resource type="BoxMesh" id="mesh_101"]
+size = Vector3(44.5, 180, 10)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_101"]
+size = Vector3(44.5, 180, 10)
+
+[sub_resource type="BoxMesh" id="mesh_102"]
+size = Vector3(138.5, 180, 75)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_102"]
+size = Vector3(138.5, 180, 75)
+
+[sub_resource type="BoxMesh" id="mesh_103"]
+size = Vector3(4000, 5, 2000)
+material = SubResource("mat_ground")
+
+[sub_resource type="BoxShape3D" id="shape_103"]
+size = Vector3(4000, 5, 2000)
+
+[sub_resource type="BoxMesh" id="mesh_104"]
+size = Vector3(80, 1000, 80)
+material = SubResource("mat_ext")
+
+[sub_resource type="BoxShape3D" id="shape_104"]
+size = Vector3(80, 1000, 80)
+
+[sub_resource type="BoxMesh" id="mesh_105"]
+size = Vector3(60, 30, 60)
+material = SubResource("mat_ext")
+
+[sub_resource type="BoxShape3D" id="shape_105"]
+size = Vector3(60, 30, 60)
+
+[sub_resource type="BoxMesh" id="mesh_106"]
+size = Vector3(100, 850, 90)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_106"]
+size = Vector3(100, 850, 90)
+
+[sub_resource type="BoxMesh" id="mesh_107"]
+size = Vector3(70, 30, 60)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_107"]
+size = Vector3(70, 30, 60)
+
+[sub_resource type="BoxMesh" id="mesh_108"]
+size = Vector3(70, 1150, 70)
+material = SubResource("mat_ext")
+
+[sub_resource type="BoxShape3D" id="shape_108"]
+size = Vector3(70, 1150, 70)
+
+[sub_resource type="BoxMesh" id="mesh_109"]
+size = Vector3(40, 120, 40)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_109"]
+size = Vector3(40, 120, 40)
+
+[sub_resource type="BoxMesh" id="mesh_110"]
+size = Vector3(40, 90, 50)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_110"]
+size = Vector3(40, 90, 50)
+
+[sub_resource type="BoxMesh" id="mesh_111"]
+size = Vector3(40, 160, 40)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_111"]
+size = Vector3(40, 160, 40)
+
+[sub_resource type="BoxMesh" id="mesh_112"]
+size = Vector3(60, 240, 40)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_112"]
+size = Vector3(60, 240, 40)
+
+[sub_resource type="BoxMesh" id="mesh_113"]
+size = Vector3(90, 980, 120)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_113"]
+size = Vector3(90, 980, 120)
+
+[sub_resource type="BoxMesh" id="mesh_114"]
+size = Vector3(100, 720, 110)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_114"]
+size = Vector3(100, 720, 110)
+
+[sub_resource type="BoxMesh" id="mesh_115"]
+size = Vector3(80, 1100, 120)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_115"]
+size = Vector3(80, 1100, 120)
+
+[sub_resource type="BoxMesh" id="mesh_116"]
+size = Vector3(60, 640, 80)
+material = SubResource("mat_ext2")
+
+[sub_resource type="BoxShape3D" id="shape_116"]
+size = Vector3(60, 640, 80)
+
+[sub_resource type="BoxMesh" id="mesh_117"]
+size = Vector3(120, 900, 200)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_117"]
+size = Vector3(120, 900, 200)
+
+[sub_resource type="BoxMesh" id="mesh_118"]
+size = Vector3(110, 1050, 200)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_118"]
+size = Vector3(110, 1050, 200)
+
+[sub_resource type="BoxMesh" id="mesh_119"]
+size = Vector3(120, 820, 250)
+material = SubResource("mat_ext3")
+
+[sub_resource type="BoxShape3D" id="shape_119"]
+size = Vector3(120, 820, 250)
+
+[sub_resource type="BoxMesh" id="mesh_120"]
+size = Vector3(0.1, 1.75, 0.1)
+material = SubResource("mat_debug")
+
+[sub_resource type="BoxShape3D" id="shape_120"]
+size = Vector3(0.1, 1.75, 0.1)
+
+[node name="GreyboxScaleTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("environment")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.258819, 0.694829, -0.670988, 0, 0.694658, 0.71934, 0.965926, -0.186179, 0.179791, 60, 300, 40)
+light_color = Color(1, 0.95, 0.87, 1)
+light_energy = 1.2
+shadow_enabled = true
+directional_shadow_max_distance = 500.0
+
+[node name="OmniLobbyWest" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 162.3, 0)
+light_energy = 1.1
+omni_range = 11
+
+[node name="OmniLobbyEast" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 162.3, 0)
+light_energy = 1.1
+omni_range = 11
+
+[node name="OmniCorridorA" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 162.2, 0)
+light_energy = 0.9
+omni_range = 9
+
+[node name="OmniCorridorB" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 162.3, 6)
+light_energy = 0.9
+omni_range = 9
+
+[node name="OmniCorridorCWest" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 162, 10)
+light_energy = 0.8
+omni_range = 9
+
+[node name="OmniCorridorCEast" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 162, 10)
+light_energy = 0.8
+omni_range = 8
+
+[node name="OmniAtriumWestNorth" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 220, 18)
+light_energy = 1.3
+omni_range = 70
+
+[node name="OmniAtriumWestSouth" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 220, -18)
+light_energy = 1.3
+omni_range = 70
+
+[node name="OmniAtriumEastNorth" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 220, 18)
+light_energy = 1.3
+omni_range = 70
+
+[node name="OmniAtriumEastSouth" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 106, 220, -18)
+light_energy = 1.3
+omni_range = 70
+
+[node name="OmniTransition" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133, 164.5, 0)
+light_energy = 0.9
+omni_range = 8
+
+[node name="ZoneA" type="Node3D" parent="."]
+
+[node name="ZoneB" type="Node3D" parent="."]
+
+[node name="Atrium" type="Node3D" parent="."]
+
+[node name="ZoneD" type="Node3D" parent="."]
+
+[node name="HostTower" type="Node3D" parent="."]
+
+[node name="Exterior" type="Node3D" parent="."]
+
+[node name="DebugRefs" type="Node3D" parent="."]
+
+[node name="InteriorFloor" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.25, 159.75, 3)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/InteriorFloor"]
+mesh = SubResource("mesh_000")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/InteriorFloor"]
+shape = SubResource("shape_000")
+
+[node name="LobbyWestWall" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 161.75, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyWestWall"]
+mesh = SubResource("mesh_001")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyWestWall"]
+shape = SubResource("shape_001")
+
+[node name="LobbyNorthWall" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 161.75, 5.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyNorthWall"]
+mesh = SubResource("mesh_002")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyNorthWall"]
+shape = SubResource("shape_002")
+
+[node name="LobbySouthWallWest" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 161.75, -5.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbySouthWallWest"]
+mesh = SubResource("mesh_003")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbySouthWallWest"]
+shape = SubResource("shape_003")
+
+[node name="LobbySouthWallEast" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 161.75, -5.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbySouthWallEast"]
+mesh = SubResource("mesh_004")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbySouthWallEast"]
+shape = SubResource("shape_004")
+
+[node name="LobbySouthWallLintel" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 162.85, -5.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbySouthWallLintel"]
+mesh = SubResource("mesh_005")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbySouthWallLintel"]
+shape = SubResource("shape_005")
+
+[node name="RecessSideWest" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1, 161.1, -4.7)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/RecessSideWest"]
+mesh = SubResource("mesh_006")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/RecessSideWest"]
+shape = SubResource("shape_006")
+
+[node name="RecessSideEast" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9, 161.1, -4.7)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/RecessSideEast"]
+mesh = SubResource("mesh_006")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/RecessSideEast"]
+shape = SubResource("shape_006")
+
+[node name="RecessBack" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 161.1, -4.45)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/RecessBack"]
+mesh = SubResource("mesh_007")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/RecessBack"]
+shape = SubResource("shape_007")
+
+[node name="LobbyCeiling" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 163.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyCeiling"]
+mesh = SubResource("mesh_008")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyCeiling"]
+shape = SubResource("shape_008")
+
+[node name="LobbyLightStripNorth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 162.95, 1.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyLightStripNorth"]
+mesh = SubResource("mesh_009")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyLightStripNorth"]
+shape = SubResource("shape_009")
+
+[node name="LobbyLightStripSouth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 162.95, -1.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyLightStripSouth"]
+mesh = SubResource("mesh_009")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyLightStripSouth"]
+shape = SubResource("shape_009")
+
+[node name="LobbyColumnNorth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.025, 161.5, 2.425)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyColumnNorth"]
+mesh = SubResource("mesh_010")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyColumnNorth"]
+shape = SubResource("shape_010")
+
+[node name="LobbyColumnSouth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.025, 161.5, -2.425)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyColumnSouth"]
+mesh = SubResource("mesh_010")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyColumnSouth"]
+shape = SubResource("shape_010")
+
+[node name="LobbyBench" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 160.225, 4.55)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyBench"]
+mesh = SubResource("mesh_011")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyBench"]
+shape = SubResource("shape_011")
+
+[node name="LobbyPlanter" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 160.2, -4.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyPlanter"]
+mesh = SubResource("mesh_012")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyPlanter"]
+shape = SubResource("shape_012")
+
+[node name="PlanterRailPostWest" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245, 160.95, -4.475)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/PlanterRailPostWest"]
+mesh = SubResource("mesh_013")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/PlanterRailPostWest"]
+shape = SubResource("shape_013")
+
+[node name="PlanterRailPostEast" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.155, 160.95, -4.475)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/PlanterRailPostEast"]
+mesh = SubResource("mesh_013")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/PlanterRailPostEast"]
+shape = SubResource("shape_013")
+
+[node name="PlanterRailTop" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 161.45, -4.475)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/PlanterRailTop"]
+mesh = SubResource("mesh_014")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/PlanterRailTop"]
+shape = SubResource("shape_014")
+
+[node name="LobbyEastWallNorth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.25, 161.75, 3.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyEastWallNorth"]
+mesh = SubResource("mesh_015")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyEastWallNorth"]
+shape = SubResource("shape_015")
+
+[node name="LobbyEastWallSouth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.25, 161.75, -3.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyEastWallSouth"]
+mesh = SubResource("mesh_015")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyEastWallSouth"]
+shape = SubResource("shape_015")
+
+[node name="LobbyEastWallLintel" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.25, 162.9, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyEastWallLintel"]
+mesh = SubResource("mesh_016")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyEastWallLintel"]
+shape = SubResource("shape_016")
+
+[node name="LobbyDoorJambNorth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 161.15, 0.975)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyDoorJambNorth"]
+mesh = SubResource("mesh_017")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyDoorJambNorth"]
+shape = SubResource("shape_017")
+
+[node name="LobbyDoorJambSouth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 161.15, -0.975)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyDoorJambSouth"]
+mesh = SubResource("mesh_017")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyDoorJambSouth"]
+shape = SubResource("shape_017")
+
+[node name="LobbyDoorHeader" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 162.375, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/LobbyDoorHeader"]
+mesh = SubResource("mesh_018")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/LobbyDoorHeader"]
+shape = SubResource("shape_018")
+
+[node name="CorridorANorthWall" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.25, 161.75, 1.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorANorthWall"]
+mesh = SubResource("mesh_019")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorANorthWall"]
+shape = SubResource("shape_019")
+
+[node name="CorridorASouthWall" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 161.75, -1.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorASouthWall"]
+mesh = SubResource("mesh_020")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorASouthWall"]
+shape = SubResource("shape_020")
+
+[node name="CorridorACeiling" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 163.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorACeiling"]
+mesh = SubResource("mesh_021")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorACeiling"]
+shape = SubResource("shape_021")
+
+[node name="CorridorALightStrip" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 162.95, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorALightStrip"]
+mesh = SubResource("mesh_022")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorALightStrip"]
+shape = SubResource("shape_022")
+
+[node name="CorridorADoorJambNorth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 161.15, 1.495)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorADoorJambNorth"]
+mesh = SubResource("mesh_017")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorADoorJambNorth"]
+shape = SubResource("shape_017")
+
+[node name="CorridorADoorJambSouth" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 161.15, -1.495)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorADoorJambSouth"]
+mesh = SubResource("mesh_017")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorADoorJambSouth"]
+shape = SubResource("shape_017")
+
+[node name="CorridorADoorHeader" type="StaticBody3D" parent="ZoneA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 162.375, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneA/CorridorADoorHeader"]
+mesh = SubResource("mesh_023")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneA/CorridorADoorHeader"]
+shape = SubResource("shape_023")
+
+[node name="CorridorBWestWall" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.25, 161.75, 6.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorBWestWall"]
+mesh = SubResource("mesh_024")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorBWestWall"]
+shape = SubResource("shape_024")
+
+[node name="CorridorBEndWall" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.25, 161.75, 10.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorBEndWall"]
+mesh = SubResource("mesh_003")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorBEndWall"]
+shape = SubResource("shape_003")
+
+[node name="CorridorABEastWall" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.75, 161.75, 3.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorABEastWall"]
+mesh = SubResource("mesh_025")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorABEastWall"]
+shape = SubResource("shape_025")
+
+[node name="CorridorBCLintel" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.75, 163.05, 9.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorBCLintel"]
+mesh = SubResource("mesh_026")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorBCLintel"]
+shape = SubResource("shape_026")
+
+[node name="CorridorBCeiling" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 163.25, 6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorBCeiling"]
+mesh = SubResource("mesh_027")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorBCeiling"]
+shape = SubResource("shape_027")
+
+[node name="CorridorBLightStrip" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 162.95, 6.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorBLightStrip"]
+mesh = SubResource("mesh_028")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorBLightStrip"]
+shape = SubResource("shape_028")
+
+[node name="CorridorCSouthWall" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.75, 161.5, 8.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorCSouthWall"]
+mesh = SubResource("mesh_029")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorCSouthWall"]
+shape = SubResource("shape_029")
+
+[node name="CorridorCNorthWall" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.75, 161.5, 11.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorCNorthWall"]
+mesh = SubResource("mesh_029")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorCNorthWall"]
+shape = SubResource("shape_029")
+
+[node name="CorridorCCeiling" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.25, 162.8, 10)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorCCeiling"]
+mesh = SubResource("mesh_030")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorCCeiling"]
+shape = SubResource("shape_030")
+
+[node name="CorridorCLightStrip" type="StaticBody3D" parent="ZoneB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 162.55, 10)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneB/CorridorCLightStrip"]
+mesh = SubResource("mesh_031")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneB/CorridorCLightStrip"]
+shape = SubResource("shape_031")
+
+[node name="AtriumFloor" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 159.75, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumFloor"]
+mesh = SubResource("mesh_032")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumFloor"]
+shape = SubResource("shape_032")
+
+[node name="AtriumWestWallSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 200, -11.625)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumWestWallSouth"]
+mesh = SubResource("mesh_033")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumWestWallSouth"]
+shape = SubResource("shape_033")
+
+[node name="AtriumWestWallNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 200, 21.625)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumWestWallNorth"]
+mesh = SubResource("mesh_034")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumWestWallNorth"]
+shape = SubResource("shape_034")
+
+[node name="AtriumWestDoorLintel" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 201.25, 10)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumWestDoorLintel"]
+mesh = SubResource("mesh_035")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumWestDoorLintel"]
+shape = SubResource("shape_035")
+
+[node name="RevealDoorJambSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.425, 161.25, 9.175)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/RevealDoorJambSouth"]
+mesh = SubResource("mesh_036")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/RevealDoorJambSouth"]
+shape = SubResource("shape_036")
+
+[node name="RevealDoorJambNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.425, 161.25, 10.825)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/RevealDoorJambNorth"]
+mesh = SubResource("mesh_036")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/RevealDoorJambNorth"]
+shape = SubResource("shape_036")
+
+[node name="RevealDoorHeader" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.425, 162.575, 10)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/RevealDoorHeader"]
+mesh = SubResource("mesh_037")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/RevealDoorHeader"]
+shape = SubResource("shape_037")
+
+[node name="AtriumNorthWall" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 200, 32.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumNorthWall"]
+mesh = SubResource("mesh_038")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumNorthWall"]
+shape = SubResource("shape_038")
+
+[node name="AtriumSouthWall" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 200, -32.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumSouthWall"]
+mesh = SubResource("mesh_038")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumSouthWall"]
+shape = SubResource("shape_038")
+
+[node name="AtriumEastWallSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127, 200, -16.7)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumEastWallSouth"]
+mesh = SubResource("mesh_039")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumEastWallSouth"]
+shape = SubResource("shape_039")
+
+[node name="AtriumEastWallNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127, 200, 16.7)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumEastWallNorth"]
+mesh = SubResource("mesh_039")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumEastWallNorth"]
+shape = SubResource("shape_039")
+
+[node name="AtriumEastDoorSill" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127, 161.2, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumEastDoorSill"]
+mesh = SubResource("mesh_040")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumEastDoorSill"]
+shape = SubResource("shape_040")
+
+[node name="AtriumEastDoorLintel" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127, 201.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumEastDoorLintel"]
+mesh = SubResource("mesh_041")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumEastDoorLintel"]
+shape = SubResource("shape_041")
+
+[node name="AtriumRoofNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 240.25, 18.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumRoofNorth"]
+mesh = SubResource("mesh_042")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumRoofNorth"]
+shape = SubResource("shape_042")
+
+[node name="AtriumRoofSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 240.25, -18.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumRoofSouth"]
+mesh = SubResource("mesh_042")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumRoofSouth"]
+shape = SubResource("shape_042")
+
+[node name="BandNorth01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 164.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth01"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth01"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 164.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth01"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth01"]
+shape = SubResource("shape_043")
+
+[node name="BandWest01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 164.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest01"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest01"]
+shape = SubResource("shape_044")
+
+[node name="BandEast01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 164.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast01"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast01"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 168.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth02"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth02"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 168.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth02"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth02"]
+shape = SubResource("shape_043")
+
+[node name="BandWest02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 168.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest02"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest02"]
+shape = SubResource("shape_044")
+
+[node name="BandEast02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 168.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast02"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast02"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 172.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth03"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth03"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 172.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth03"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth03"]
+shape = SubResource("shape_043")
+
+[node name="BandWest03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 172.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest03"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest03"]
+shape = SubResource("shape_044")
+
+[node name="BandEast03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 172.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast03"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast03"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 176.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth04"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth04"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 176.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth04"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth04"]
+shape = SubResource("shape_043")
+
+[node name="BandWest04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 176.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest04"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest04"]
+shape = SubResource("shape_044")
+
+[node name="BandEast04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 176.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast04"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast04"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 180.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth05"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth05"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 180.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth05"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth05"]
+shape = SubResource("shape_043")
+
+[node name="BandWest05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 180.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest05"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest05"]
+shape = SubResource("shape_044")
+
+[node name="BandEast05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 180.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast05"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast05"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 184.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth06"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth06"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 184.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth06"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth06"]
+shape = SubResource("shape_043")
+
+[node name="BandWest06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 184.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest06"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest06"]
+shape = SubResource("shape_044")
+
+[node name="BandEast06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 184.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast06"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast06"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 188.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth07"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth07"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 188.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth07"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth07"]
+shape = SubResource("shape_043")
+
+[node name="BandWest07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 188.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest07"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest07"]
+shape = SubResource("shape_044")
+
+[node name="BandEast07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 188.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast07"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast07"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth08" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 192.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth08"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth08"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth08" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 192.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth08"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth08"]
+shape = SubResource("shape_043")
+
+[node name="BandWest08" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 192.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest08"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest08"]
+shape = SubResource("shape_044")
+
+[node name="BandEast08" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 192.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast08"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast08"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 196.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth09"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth09"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 196.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth09"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth09"]
+shape = SubResource("shape_043")
+
+[node name="BandWest09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 196.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest09"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest09"]
+shape = SubResource("shape_044")
+
+[node name="BandEast09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 196.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast09"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast09"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 200.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth10"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth10"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 200.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth10"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth10"]
+shape = SubResource("shape_043")
+
+[node name="BandWest10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 200.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest10"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest10"]
+shape = SubResource("shape_044")
+
+[node name="BandEast10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 200.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast10"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast10"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 204.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth11"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth11"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 204.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth11"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth11"]
+shape = SubResource("shape_043")
+
+[node name="BandWest11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 204.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest11"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest11"]
+shape = SubResource("shape_044")
+
+[node name="BandEast11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 204.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast11"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast11"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 208.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth12"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth12"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 208.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth12"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth12"]
+shape = SubResource("shape_043")
+
+[node name="BandWest12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 208.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest12"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest12"]
+shape = SubResource("shape_044")
+
+[node name="BandEast12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 208.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast12"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast12"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth13" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 212.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth13"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth13"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth13" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 212.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth13"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth13"]
+shape = SubResource("shape_043")
+
+[node name="BandWest13" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 212.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest13"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest13"]
+shape = SubResource("shape_044")
+
+[node name="BandEast13" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 212.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast13"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast13"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth14" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 216.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth14"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth14"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth14" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 216.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth14"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth14"]
+shape = SubResource("shape_043")
+
+[node name="BandWest14" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 216.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest14"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest14"]
+shape = SubResource("shape_044")
+
+[node name="BandEast14" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 216.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast14"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast14"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 220.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth15"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth15"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 220.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth15"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth15"]
+shape = SubResource("shape_043")
+
+[node name="BandWest15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 220.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest15"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest15"]
+shape = SubResource("shape_044")
+
+[node name="BandEast15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 220.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast15"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast15"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth16" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 224.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth16"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth16"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth16" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 224.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth16"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth16"]
+shape = SubResource("shape_043")
+
+[node name="BandWest16" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 224.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest16"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest16"]
+shape = SubResource("shape_044")
+
+[node name="BandEast16" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 224.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast16"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast16"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth17" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 228.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth17"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth17"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth17" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 228.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth17"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth17"]
+shape = SubResource("shape_043")
+
+[node name="BandWest17" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 228.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest17"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest17"]
+shape = SubResource("shape_044")
+
+[node name="BandEast17" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 228.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast17"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast17"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 232.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth18"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth18"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 232.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth18"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth18"]
+shape = SubResource("shape_043")
+
+[node name="BandWest18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 232.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest18"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest18"]
+shape = SubResource("shape_044")
+
+[node name="BandEast18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 232.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast18"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast18"]
+shape = SubResource("shape_044")
+
+[node name="BandNorth19" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 236.3, 31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandNorth19"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandNorth19"]
+shape = SubResource("shape_043")
+
+[node name="BandSouth19" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 236.3, -31.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandSouth19"]
+mesh = SubResource("mesh_043")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandSouth19"]
+shape = SubResource("shape_043")
+
+[node name="BandWest19" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.75, 236.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandWest19"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandWest19"]
+shape = SubResource("shape_044")
+
+[node name="BandEast19" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.25, 236.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BandEast19"]
+mesh = SubResource("mesh_044")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BandEast19"]
+shape = SubResource("shape_044")
+
+[node name="CorniceNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 239.7, 31.65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/CorniceNorth"]
+mesh = SubResource("mesh_045")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/CorniceNorth"]
+shape = SubResource("shape_045")
+
+[node name="CorniceSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 239.7, -31.65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/CorniceSouth"]
+mesh = SubResource("mesh_045")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/CorniceSouth"]
+shape = SubResource("shape_045")
+
+[node name="CorniceWest" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.85, 239.7, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/CorniceWest"]
+mesh = SubResource("mesh_046")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/CorniceWest"]
+shape = SubResource("shape_046")
+
+[node name="CorniceEast" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.15, 239.7, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/CorniceEast"]
+mesh = SubResource("mesh_046")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/CorniceEast"]
+shape = SubResource("shape_046")
+
+[node name="BalconyDeck03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 172.2, 30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck03"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck03"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 172.95, 28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet03"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet03"]
+shape = SubResource("shape_048")
+
+[node name="BalconyDeck06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 184.2, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck06"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck06"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 184.95, -28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet06"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet06"]
+shape = SubResource("shape_048")
+
+[node name="BalconyDeck09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 196.2, 30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck09"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck09"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 196.95, 28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet09"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet09"]
+shape = SubResource("shape_048")
+
+[node name="BalconyDeck12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 208.2, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck12"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck12"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 208.95, -28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet12"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet12"]
+shape = SubResource("shape_048")
+
+[node name="BalconyDeck15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 220.2, 30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck15"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck15"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 220.95, 28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet15"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet15"]
+shape = SubResource("shape_048")
+
+[node name="BalconyDeck18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 232.2, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyDeck18"]
+mesh = SubResource("mesh_047")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyDeck18"]
+shape = SubResource("shape_047")
+
+[node name="BalconyParapet18" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 232.95, -28.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BalconyParapet18"]
+mesh = SubResource("mesh_048")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BalconyParapet18"]
+shape = SubResource("shape_048")
+
+[node name="GlazingNorth02_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 170, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth02_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth02_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth02_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 170, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth02_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth02_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth02_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 170, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth02_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth02_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth02_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 170, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth02_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth02_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth02_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 170, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth02_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth02_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth02_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 170, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth02_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth02_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth05_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 182, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth05_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth05_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth05_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 182, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth05_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth05_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth05_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 182, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth05_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth05_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth05_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 182, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth05_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth05_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth05_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 182, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth05_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth05_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth05_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 182, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth05_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth05_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth08_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 194, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth08_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth08_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth08_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 194, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth08_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth08_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth08_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 194, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth08_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth08_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth08_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 194, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth08_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth08_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth08_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 194, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth08_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth08_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth08_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 194, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth08_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth08_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth11_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 206, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth11_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth11_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth11_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 206, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth11_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth11_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth11_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 206, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth11_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth11_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth11_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 206, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth11_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth11_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth11_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 206, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth11_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth11_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth11_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 206, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth11_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth11_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth14_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 218, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth14_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth14_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth14_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 218, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth14_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth14_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth14_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 218, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth14_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth14_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth14_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 218, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth14_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth14_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth14_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 218, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth14_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth14_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth14_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 218, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth14_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth14_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth17_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 230, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth17_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth17_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth17_0" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 230, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth17_0"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth17_0"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth17_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 230, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth17_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth17_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth17_1" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 230, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth17_1"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth17_1"]
+shape = SubResource("shape_049")
+
+[node name="GlazingNorth17_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 230, 31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingNorth17_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingNorth17_2"]
+shape = SubResource("shape_049")
+
+[node name="GlazingSouth17_2" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101, 230, -31.925)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GlazingSouth17_2"]
+mesh = SubResource("mesh_049")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GlazingSouth17_2"]
+shape = SubResource("shape_049")
+
+[node name="BridgeNSDeck" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.5, 180.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeNSDeck"]
+mesh = SubResource("mesh_050")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeNSDeck"]
+shape = SubResource("shape_050")
+
+[node name="BridgeNSRailWest" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100.06, 181.05, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeNSRailWest"]
+mesh = SubResource("mesh_051")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeNSRailWest"]
+shape = SubResource("shape_051")
+
+[node name="BridgeNSRailEast" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.94, 181.05, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeNSRailEast"]
+mesh = SubResource("mesh_051")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeNSRailEast"]
+shape = SubResource("shape_051")
+
+[node name="BridgeEWDeck" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 205.25, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeEWDeck"]
+mesh = SubResource("mesh_052")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeEWDeck"]
+shape = SubResource("shape_052")
+
+[node name="BridgeEWRailSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 206.05, -1.44)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeEWRailSouth"]
+mesh = SubResource("mesh_053")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeEWRailSouth"]
+shape = SubResource("shape_053")
+
+[node name="BridgeEWRailNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.5, 206.05, 1.44)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/BridgeEWRailNorth"]
+mesh = SubResource("mesh_053")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/BridgeEWRailNorth"]
+shape = SubResource("shape_053")
+
+[node name="Column00" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 200, -15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/Column00"]
+mesh = SubResource("mesh_054")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/Column00"]
+shape = SubResource("shape_054")
+
+[node name="ColumnPlinth00" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 160.6, -15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/ColumnPlinth00"]
+mesh = SubResource("mesh_055")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/ColumnPlinth00"]
+shape = SubResource("shape_055")
+
+[node name="Column01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 200, 15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/Column01"]
+mesh = SubResource("mesh_054")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/Column01"]
+shape = SubResource("shape_054")
+
+[node name="ColumnPlinth01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 160.6, 15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/ColumnPlinth01"]
+mesh = SubResource("mesh_055")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/ColumnPlinth01"]
+shape = SubResource("shape_055")
+
+[node name="Column10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 200, -15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/Column10"]
+mesh = SubResource("mesh_054")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/Column10"]
+shape = SubResource("shape_054")
+
+[node name="ColumnPlinth10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 160.6, -15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/ColumnPlinth10"]
+mesh = SubResource("mesh_055")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/ColumnPlinth10"]
+shape = SubResource("shape_055")
+
+[node name="Column11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 200, 15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/Column11"]
+mesh = SubResource("mesh_054")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/Column11"]
+shape = SubResource("shape_054")
+
+[node name="ColumnPlinth11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112, 160.6, 15)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/ColumnPlinth11"]
+mesh = SubResource("mesh_055")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/ColumnPlinth11"]
+shape = SubResource("shape_055")
+
+[node name="EntryBaffle" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.25, 162, 10)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/EntryBaffle"]
+mesh = SubResource("mesh_056")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/EntryBaffle"]
+shape = SubResource("shape_056")
+
+[node name="AtriumBench" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.5, 160.225, 11.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/AtriumBench"]
+mesh = SubResource("mesh_057")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/AtriumBench"]
+shape = SubResource("shape_057")
+
+[node name="SouthDoorPanelWest" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.6, 161.15, -31.95)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SouthDoorPanelWest"]
+mesh = SubResource("mesh_058")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SouthDoorPanelWest"]
+shape = SubResource("shape_058")
+
+[node name="SouthDoorPanelEast" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6, 161.15, -31.95)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SouthDoorPanelEast"]
+mesh = SubResource("mesh_058")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SouthDoorPanelEast"]
+shape = SubResource("shape_058")
+
+[node name="EastOpeningSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.45, 190.3, -12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/EastOpeningSouth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/EastOpeningSouth"]
+shape = SubResource("shape_059")
+
+[node name="EastOpeningNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.45, 190.3, 12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/EastOpeningNorth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/EastOpeningNorth"]
+shape = SubResource("shape_059")
+
+[node name="EastOpeningUpperSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.45, 206.3, -12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/EastOpeningUpperSouth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/EastOpeningUpperSouth"]
+shape = SubResource("shape_059")
+
+[node name="EastOpeningUpperNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 126.45, 206.3, 12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/EastOpeningUpperNorth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/EastOpeningUpperNorth"]
+shape = SubResource("shape_059")
+
+[node name="WestOpeningSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.55, 190.3, -12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/WestOpeningSouth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/WestOpeningSouth"]
+shape = SubResource("shape_059")
+
+[node name="WestOpeningNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.55, 190.3, 12)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/WestOpeningNorth"]
+mesh = SubResource("mesh_059")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/WestOpeningNorth"]
+shape = SubResource("shape_059")
+
+[node name="SkylightMullion00" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion00"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion00"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion01"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion01"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion02"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion02"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion03"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion03"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion04"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion04"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion05"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion05"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion06"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion06"]
+shape = SubResource("shape_060")
+
+[node name="SkylightMullion07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.075, 240.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/SkylightMullion07"]
+mesh = SubResource("mesh_060")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/SkylightMullion07"]
+shape = SubResource("shape_060")
+
+[node name="GalleryDeck" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.5, 162.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryDeck"]
+mesh = SubResource("mesh_061")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryDeck"]
+shape = SubResource("shape_061")
+
+[node name="GalleryColumnNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118, 160.95, 7)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryColumnNorth"]
+mesh = SubResource("mesh_062")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryColumnNorth"]
+shape = SubResource("shape_062")
+
+[node name="GalleryColumnSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 118, 160.95, -7)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryColumnSouth"]
+mesh = SubResource("mesh_062")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryColumnSouth"]
+shape = SubResource("shape_062")
+
+[node name="GalleryParapetWestSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.56, 162.95, -6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryParapetWestSouth"]
+mesh = SubResource("mesh_063")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryParapetWestSouth"]
+shape = SubResource("shape_063")
+
+[node name="GalleryParapetWestNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.56, 162.95, 6.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryParapetWestNorth"]
+mesh = SubResource("mesh_063")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryParapetWestNorth"]
+shape = SubResource("shape_063")
+
+[node name="GalleryParapetNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.5, 162.95, 9.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryParapetNorth"]
+mesh = SubResource("mesh_064")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryParapetNorth"]
+shape = SubResource("shape_064")
+
+[node name="GalleryParapetSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 120.5, 162.95, -9.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryParapetSouth"]
+mesh = SubResource("mesh_064")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryParapetSouth"]
+shape = SubResource("shape_064")
+
+[node name="StairStep01" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.35, 160.06, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep01"]
+mesh = SubResource("mesh_065")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep01"]
+shape = SubResource("shape_065")
+
+[node name="StairStep02" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.56, 160.14, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep02"]
+mesh = SubResource("mesh_066")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep02"]
+shape = SubResource("shape_066")
+
+[node name="StairStep03" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.77, 160.22, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep03"]
+mesh = SubResource("mesh_067")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep03"]
+shape = SubResource("shape_067")
+
+[node name="StairStep04" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.98, 160.3, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep04"]
+mesh = SubResource("mesh_068")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep04"]
+shape = SubResource("shape_068")
+
+[node name="StairStep05" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.19, 160.38, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep05"]
+mesh = SubResource("mesh_069")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep05"]
+shape = SubResource("shape_069")
+
+[node name="StairStep06" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.4, 160.46, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep06"]
+mesh = SubResource("mesh_070")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep06"]
+shape = SubResource("shape_070")
+
+[node name="StairStep07" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.61, 160.54, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep07"]
+mesh = SubResource("mesh_071")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep07"]
+shape = SubResource("shape_071")
+
+[node name="StairStep08" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.82, 160.62, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep08"]
+mesh = SubResource("mesh_072")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep08"]
+shape = SubResource("shape_072")
+
+[node name="StairStep09" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.03, 160.7, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep09"]
+mesh = SubResource("mesh_073")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep09"]
+shape = SubResource("shape_073")
+
+[node name="StairStep10" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.24, 160.78, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep10"]
+mesh = SubResource("mesh_074")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep10"]
+shape = SubResource("shape_074")
+
+[node name="StairStep11" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.45, 160.86, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep11"]
+mesh = SubResource("mesh_075")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep11"]
+shape = SubResource("shape_075")
+
+[node name="StairStep12" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.66, 160.94, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep12"]
+mesh = SubResource("mesh_076")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep12"]
+shape = SubResource("shape_076")
+
+[node name="StairStep13" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 113.87, 161.02, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep13"]
+mesh = SubResource("mesh_077")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep13"]
+shape = SubResource("shape_077")
+
+[node name="StairStep14" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.08, 161.1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep14"]
+mesh = SubResource("mesh_078")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep14"]
+shape = SubResource("shape_078")
+
+[node name="StairStep15" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 114.29, 161.18, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairStep15"]
+mesh = SubResource("mesh_079")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairStep15"]
+shape = SubResource("shape_079")
+
+[node name="StairRampCollision" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(0.941742, -0.336336, 0, 0.336336, 0.941742, 0, 0, 0, 1, 111.224084, 160.964565, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairRampCollision"]
+mesh = SubResource("mesh_080")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairRampCollision"]
+shape = SubResource("shape_080")
+
+[node name="StairParapetSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(0.941742, -0.336336, 0, 0.336336, 0.941742, 0, 0, 0, 1, 110.955015, 161.717958, -3.06)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairParapetSouth"]
+mesh = SubResource("mesh_081")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairParapetSouth"]
+shape = SubResource("shape_081")
+
+[node name="StairParapetNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(0.941742, -0.336336, 0, 0.336336, 0.941742, 0, 0, 0, 1, 110.955015, 161.717958, 3.06)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/StairParapetNorth"]
+mesh = SubResource("mesh_081")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/StairParapetNorth"]
+shape = SubResource("shape_081")
+
+[node name="GalleryDoorJambSouth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.475, 163.65, 0.975)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryDoorJambSouth"]
+mesh = SubResource("mesh_036")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryDoorJambSouth"]
+shape = SubResource("shape_036")
+
+[node name="GalleryDoorJambNorth" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.475, 163.65, -0.975)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryDoorJambNorth"]
+mesh = SubResource("mesh_036")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryDoorJambNorth"]
+shape = SubResource("shape_036")
+
+[node name="GalleryDoorHeader" type="StaticBody3D" parent="Atrium"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.475, 164.975, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Atrium/GalleryDoorHeader"]
+mesh = SubResource("mesh_082")
+
+[node name="Collision" type="CollisionShape3D" parent="Atrium/GalleryDoorHeader"]
+shape = SubResource("shape_082")
+
+[node name="TransitionFloor" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.75, 162.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionFloor"]
+mesh = SubResource("mesh_083")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionFloor"]
+shape = SubResource("shape_083")
+
+[node name="TransitionWallNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.05, 164.2, 1.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionWallNorth"]
+mesh = SubResource("mesh_084")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionWallNorth"]
+shape = SubResource("shape_084")
+
+[node name="TransitionWallSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133.05, 164.2, -1.75)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionWallSouth"]
+mesh = SubResource("mesh_084")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionWallSouth"]
+shape = SubResource("shape_084")
+
+[node name="TransitionCeiling" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 132.8, 165.4, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionCeiling"]
+mesh = SubResource("mesh_085")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionCeiling"]
+shape = SubResource("shape_085")
+
+[node name="TransitionLightStrip" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 133, 165.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionLightStrip"]
+mesh = SubResource("mesh_086")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionLightStrip"]
+shape = SubResource("shape_086")
+
+[node name="TransitionMouthLintel" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.3, 165.7, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/TransitionMouthLintel"]
+mesh = SubResource("mesh_087")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/TransitionMouthLintel"]
+shape = SubResource("shape_087")
+
+[node name="BridgeDeck" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 162.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeDeck"]
+mesh = SubResource("mesh_088")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeDeck"]
+shape = SubResource("shape_088")
+
+[node name="BridgeBeamNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 161.6, 2.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeBeamNorth"]
+mesh = SubResource("mesh_089")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeBeamNorth"]
+shape = SubResource("shape_089")
+
+[node name="BridgeBeamSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 161.6, -2.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeBeamSouth"]
+mesh = SubResource("mesh_089")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeBeamSouth"]
+shape = SubResource("shape_089")
+
+[node name="BridgeRailTopNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 163.52, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeRailTopNorth"]
+mesh = SubResource("mesh_090")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeRailTopNorth"]
+shape = SubResource("shape_090")
+
+[node name="BridgeRailMidNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 162.95, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeRailMidNorth"]
+mesh = SubResource("mesh_090")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeRailMidNorth"]
+shape = SubResource("shape_090")
+
+[node name="BridgeRailTopSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 163.52, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeRailTopSouth"]
+mesh = SubResource("mesh_090")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeRailTopSouth"]
+shape = SubResource("shape_090")
+
+[node name="BridgeRailMidSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158, 162.95, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgeRailMidSouth"]
+mesh = SubResource("mesh_090")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgeRailMidSouth"]
+shape = SubResource("shape_090")
+
+[node name="BridgePostNorth00" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth00"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth00"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth00" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 142.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth00"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth00"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth01" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth01"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth01"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth01" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 146.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth01"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth01"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth02" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth02"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth02"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth02" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 150.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth02"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth02"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth03" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth03"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth03"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth03" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 154.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth03"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth03"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth04" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth04"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth04"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth04" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth04"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth04"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth05" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth05"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth05"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth05" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 162.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth05"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth05"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth06" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 166.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth06"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth06"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth06" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 166.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth06"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth06"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth07" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth07"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth07"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth07" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth07"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth07"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostNorth08" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.06, 162.975, 2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostNorth08"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostNorth08"]
+shape = SubResource("shape_091")
+
+[node name="BridgePostSouth08" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 174.06, 162.975, -2.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePostSouth08"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePostSouth08"]
+shape = SubResource("shape_091")
+
+[node name="BridgePylonWest" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148, 80.65, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePylonWest"]
+mesh = SubResource("mesh_092")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePylonWest"]
+shape = SubResource("shape_092")
+
+[node name="BridgePylonEast" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 168, 80.65, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/BridgePylonEast"]
+mesh = SubResource("mesh_092")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/BridgePylonEast"]
+shape = SubResource("shape_092")
+
+[node name="PlatformDeck" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 162.15, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformDeck"]
+mesh = SubResource("mesh_093")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformDeck"]
+shape = SubResource("shape_093")
+
+[node name="PlatformBeam" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 161.6, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformBeam"]
+mesh = SubResource("mesh_094")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformBeam"]
+shape = SubResource("shape_094")
+
+[node name="PlatformPylon" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 80.65, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPylon"]
+mesh = SubResource("mesh_095")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPylon"]
+shape = SubResource("shape_095")
+
+[node name="PlatformRailTopEast" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 163.52, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailTopEast"]
+mesh = SubResource("mesh_096")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailTopEast"]
+shape = SubResource("shape_096")
+
+[node name="PlatformRailMidEast" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.95, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailMidEast"]
+mesh = SubResource("mesh_096")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailMidEast"]
+shape = SubResource("shape_096")
+
+[node name="PlatformRailTopNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 163.52, 6.97)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailTopNorth"]
+mesh = SubResource("mesh_097")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailTopNorth"]
+shape = SubResource("shape_097")
+
+[node name="PlatformRailMidNorth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 162.95, 6.97)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailMidNorth"]
+mesh = SubResource("mesh_097")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailMidNorth"]
+shape = SubResource("shape_097")
+
+[node name="PlatformRailTopSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 163.52, -6.97)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailTopSouth"]
+mesh = SubResource("mesh_097")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailTopSouth"]
+shape = SubResource("shape_097")
+
+[node name="PlatformRailMidSouth" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185, 162.95, -6.97)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformRailMidSouth"]
+mesh = SubResource("mesh_097")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformRailMidSouth"]
+shape = SubResource("shape_097")
+
+[node name="PlatformPostEast00" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.975, -6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostEast00"]
+mesh = SubResource("mesh_098")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostEast00"]
+shape = SubResource("shape_098")
+
+[node name="PlatformPostEast01" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.975, -3.44)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostEast01"]
+mesh = SubResource("mesh_098")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostEast01"]
+shape = SubResource("shape_098")
+
+[node name="PlatformPostEast02" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.975, 0.06)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostEast02"]
+mesh = SubResource("mesh_098")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostEast02"]
+shape = SubResource("shape_098")
+
+[node name="PlatformPostEast03" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.975, 3.56)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostEast03"]
+mesh = SubResource("mesh_098")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostEast03"]
+shape = SubResource("shape_098")
+
+[node name="PlatformPostEast04" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 191.97, 162.975, 7.06)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostEast04"]
+mesh = SubResource("mesh_098")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostEast04"]
+shape = SubResource("shape_098")
+
+[node name="PlatformPostNorth00" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.06, 162.975, 6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostNorth00"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostNorth00"]
+shape = SubResource("shape_091")
+
+[node name="PlatformPostSouth00" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 181.06, 162.975, -6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostSouth00"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostSouth00"]
+shape = SubResource("shape_091")
+
+[node name="PlatformPostNorth01" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.06, 162.975, 6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostNorth01"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostNorth01"]
+shape = SubResource("shape_091")
+
+[node name="PlatformPostSouth01" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 185.06, 162.975, -6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostSouth01"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostSouth01"]
+shape = SubResource("shape_091")
+
+[node name="PlatformPostNorth02" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.06, 162.975, 6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostNorth02"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostNorth02"]
+shape = SubResource("shape_091")
+
+[node name="PlatformPostSouth02" type="StaticBody3D" parent="ZoneD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 189.06, 162.975, -6.94)
+
+[node name="Mesh" type="MeshInstance3D" parent="ZoneD/PlatformPostSouth02"]
+mesh = SubResource("mesh_091")
+
+[node name="Collision" type="CollisionShape3D" parent="ZoneD/PlatformPostSouth02"]
+shape = SubResource("shape_091")
+
+[node name="HostMassWest" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.25, 210, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostMassWest"]
+mesh = SubResource("mesh_099")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostMassWest"]
+shape = SubResource("shape_099")
+
+[node name="HostMassNorth" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.75, 120, 56.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostMassNorth"]
+mesh = SubResource("mesh_100")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostMassNorth"]
+shape = SubResource("shape_100")
+
+[node name="HostMassSouth" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.75, 120, -56.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostMassSouth"]
+mesh = SubResource("mesh_100")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostMassSouth"]
+shape = SubResource("shape_100")
+
+[node name="HostRoofOverAtriumWest" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 330, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostRoofOverAtriumWest"]
+mesh = SubResource("mesh_101")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostRoofOverAtriumWest"]
+shape = SubResource("shape_101")
+
+[node name="HostRoofNorth" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.75, 330, 42.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostRoofNorth"]
+mesh = SubResource("mesh_102")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostRoofNorth"]
+shape = SubResource("shape_102")
+
+[node name="HostRoofSouth" type="StaticBody3D" parent="HostTower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.75, 330, -42.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="HostTower/HostRoofSouth"]
+mesh = SubResource("mesh_102")
+
+[node name="Collision" type="CollisionShape3D" parent="HostTower/HostRoofSouth"]
+shape = SubResource("shape_102")
+
+[node name="ImpliedGround" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, -2.5, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/ImpliedGround"]
+mesh = SubResource("mesh_103")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/ImpliedGround"]
+shape = SubResource("shape_103")
+
+[node name="TowerAster" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 500, -100)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/TowerAster"]
+mesh = SubResource("mesh_104")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/TowerAster"]
+shape = SubResource("shape_104")
+
+[node name="TowerAsterCrown" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 250, 1015, -100)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/TowerAsterCrown"]
+mesh = SubResource("mesh_105")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/TowerAsterCrown"]
+shape = SubResource("shape_105")
+
+[node name="TowerMeridian" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 425, 65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/TowerMeridian"]
+mesh = SubResource("mesh_106")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/TowerMeridian"]
+shape = SubResource("shape_106")
+
+[node name="TowerMeridianCrown" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350, 865, 65)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/TowerMeridianCrown"]
+mesh = SubResource("mesh_107")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/TowerMeridianCrown"]
+shape = SubResource("shape_107")
+
+[node name="TowerObsidian" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225, 575, 135)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/TowerObsidian"]
+mesh = SubResource("mesh_108")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/TowerObsidian"]
+shape = SubResource("shape_108")
+
+[node name="NearBlockNorth" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 180, 60, -30)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/NearBlockNorth"]
+mesh = SubResource("mesh_109")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/NearBlockNorth"]
+shape = SubResource("shape_109")
+
+[node name="NearBlockEast" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 230, 45, 55)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/NearBlockEast"]
+mesh = SubResource("mesh_110")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/NearBlockEast"]
+shape = SubResource("shape_110")
+
+[node name="NearBlockSoutheast" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170, 80, 80)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/NearBlockSoutheast"]
+mesh = SubResource("mesh_111")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/NearBlockSoutheast"]
+shape = SubResource("shape_111")
+
+[node name="NearBlockNortheast" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 290, 120, -40)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/NearBlockNortheast"]
+mesh = SubResource("mesh_112")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/NearBlockNortheast"]
+shape = SubResource("shape_112")
+
+[node name="MidTowerWest" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 595, 490, -100)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/MidTowerWest"]
+mesh = SubResource("mesh_113")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/MidTowerWest"]
+shape = SubResource("shape_113")
+
+[node name="MidTowerCentral" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 650, 360, 85)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/MidTowerCentral"]
+mesh = SubResource("mesh_114")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/MidTowerCentral"]
+shape = SubResource("shape_114")
+
+[node name="MidTowerEast" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 760, 550, -20)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/MidTowerEast"]
+mesh = SubResource("mesh_115")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/MidTowerEast"]
+shape = SubResource("shape_115")
+
+[node name="MidTowerSouth" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 550, 320, 190)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/MidTowerSouth"]
+mesh = SubResource("mesh_116")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/MidTowerSouth"]
+shape = SubResource("shape_116")
+
+[node name="FarMassNorth" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1360, 450, -100)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/FarMassNorth"]
+mesh = SubResource("mesh_117")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/FarMassNorth"]
+shape = SubResource("shape_117")
+
+[node name="FarMassEast" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1505, 525, 150)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/FarMassEast"]
+mesh = SubResource("mesh_118")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/FarMassEast"]
+shape = SubResource("shape_118")
+
+[node name="FarMassSouth" type="StaticBody3D" parent="Exterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1660, 410, -25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Exterior/FarMassSouth"]
+mesh = SubResource("mesh_119")
+
+[node name="Collision" type="CollisionShape3D" parent="Exterior/FarMassSouth"]
+shape = SubResource("shape_119")
+
+[node name="HeightMarkerLobby" type="StaticBody3D" parent="DebugRefs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 160.875, -2)
+
+[node name="Mesh" type="MeshInstance3D" parent="DebugRefs/HeightMarkerLobby"]
+mesh = SubResource("mesh_120")
+
+[node name="Collision" type="CollisionShape3D" parent="DebugRefs/HeightMarkerLobby"]
+shape = SubResource("shape_120")
+
+[node name="HeightMarkerAtrium" type="StaticBody3D" parent="DebugRefs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.3, 160.875, 12.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="DebugRefs/HeightMarkerAtrium"]
+mesh = SubResource("mesh_120")
+
+[node name="Collision" type="CollisionShape3D" parent="DebugRefs/HeightMarkerAtrium"]
+shape = SubResource("shape_120")
+
+[node name="HeightMarkerVista" type="StaticBody3D" parent="DebugRefs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 188, 163.275, -3)
+
+[node name="Mesh" type="MeshInstance3D" parent="DebugRefs/HeightMarkerVista"]
+mesh = SubResource("mesh_120")
+
+[node name="Collision" type="CollisionShape3D" parent="DebugRefs/HeightMarkerVista"]
+shape = SubResource("shape_120")
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 2.5, 160.05, 0)

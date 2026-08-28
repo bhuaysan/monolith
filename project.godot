@@ -1,11 +1,18 @@
 ; Engine configuration file.
-; MONOLITH project foundation.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
 
 config_version=5
 
 [application]
 
 config/name="MONOLITH"
+run/main_scene="res://game/world/greybox_scale_test.tscn"
+config/features=PackedStringArray("4.7")
 
 [input]
 
