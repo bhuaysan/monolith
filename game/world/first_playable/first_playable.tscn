@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="PackedScene" path="res://game/world/first_playable/beat_1_access.tscn" id="1_beat1"]
+[ext_resource type="PackedScene" path="res://game/world/first_playable/beat_2_atrium.tscn" id="2_beat2"]
+[ext_resource type="PackedScene" path="res://game/world/first_playable/beat_3_skybridge.tscn" id="3_beat3"]
+[ext_resource type="PackedScene" path="res://game/world/first_playable/beat_4_vista.tscn" id="4_beat4"]
+[ext_resource type="PackedScene" path="res://game/player/player.tscn" id="5_player"]
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_material"]
+sky_top_color = Color(0.36, 0.45, 0.58, 1)
+sky_horizon_color = Color(0.74, 0.76, 0.78, 1)
+ground_bottom_color = Color(0.3, 0.31, 0.33, 1)
+ground_horizon_color = Color(0.7, 0.72, 0.74, 1)
+
+[sub_resource type="Sky" id="sky"]
+sky_material = SubResource("sky_material")
+
+[sub_resource type="Environment" id="environment"]
+background_mode = 2
+sky = SubResource("sky")
+ambient_light_source = 3
+ambient_light_energy = 1.2
+tonemap_mode = 2
+
+[node name="FirstPlayable" type="Node3D"]
+
+[node name="DevEnvironment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DevEnvironment"]
+environment = SubResource("environment")
+
+[node name="DevSun" type="DirectionalLight3D" parent="DevEnvironment"]
+transform = Transform3D(0.866, 0.383, -0.321, 0, 0.643, 0.766, 0.5, -0.663, 0.557, 0, 200, 0)
+shadow_enabled = true
+
+[node name="Beat1Access" parent="." instance=ExtResource("1_beat1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 152, 20)
+
+[node name="Beat2Atrium" parent="." instance=ExtResource("2_beat2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 152, -20)
+
+[node name="Beat3Skybridge" parent="." instance=ExtResource("3_beat3")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -32.5, 166, -92)
+
+[node name="Beat4Vista" parent="." instance=ExtResource("4_beat4")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -72.5, 166, -62)
+
+[node name="Player" parent="." instance=ExtResource("5_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 152.05, 18)

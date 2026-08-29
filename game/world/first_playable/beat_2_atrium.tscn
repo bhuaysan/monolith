@@ -1,0 +1,318 @@
+[gd_scene load_steps=46 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.52, 0.52, 0.5, 1)
+metallic = 0
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.42, 0.42, 0.41, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_deck"]
+albedo_color = Color(0.6, 0.6, 0.58, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_rail"]
+albedo_color = Color(0.22, 0.22, 0.23, 1)
+metallic = 0.3
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.3, 0.3, 0.31, 1)
+metallic = 0
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="mesh_001"]
+size = Vector3(64, 0.5, 80)
+material = SubResource("mat_floor")
+
+[sub_resource type="BoxShape3D" id="shape_001"]
+size = Vector3(64, 0.5, 80)
+
+[sub_resource type="BoxMesh" id="mesh_002"]
+size = Vector3(31.2, 80, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_002"]
+size = Vector3(31.2, 80, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_003"]
+size = Vector3(1.6, 77.5, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_003"]
+size = Vector3(1.6, 77.5, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_004"]
+size = Vector3(64, 80, 0.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_004"]
+size = Vector3(64, 80, 0.5)
+
+[sub_resource type="BoxMesh" id="mesh_005"]
+size = Vector3(0.5, 80, 80.5)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_005"]
+size = Vector3(0.5, 80, 80.5)
+
+[sub_resource type="BoxMesh" id="mesh_006"]
+size = Vector3(0.5, 80, 70.9)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_006"]
+size = Vector3(0.5, 80, 70.9)
+
+[sub_resource type="BoxMesh" id="mesh_007"]
+size = Vector3(0.5, 80, 7.4)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_007"]
+size = Vector3(0.5, 80, 7.4)
+
+[sub_resource type="BoxMesh" id="mesh_008"]
+size = Vector3(0.5, 14, 2.2)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_008"]
+size = Vector3(0.5, 14, 2.2)
+
+[sub_resource type="BoxMesh" id="mesh_009"]
+size = Vector3(0.5, 63.4, 2.2)
+material = SubResource("mat_wall")
+
+[sub_resource type="BoxShape3D" id="shape_009"]
+size = Vector3(0.5, 63.4, 2.2)
+
+[sub_resource type="BoxMesh" id="mesh_010"]
+size = Vector3(64, 0.5, 80.5)
+material = SubResource("mat_roof")
+
+[sub_resource type="BoxShape3D" id="shape_010"]
+size = Vector3(64, 0.5, 80.5)
+
+[sub_resource type="BoxMesh" id="mesh_011"]
+size = Vector3(4, 1, 51.25)
+material = SubResource("mat_deck")
+
+[sub_resource type="BoxShape3D" id="shape_011"]
+size = Vector3(4, 1, 51.25)
+
+[sub_resource type="BoxMesh" id="mesh_012"]
+size = Vector3(0.2, 1.2, 51.25)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_012"]
+size = Vector3(0.2, 1.2, 51.25)
+
+[sub_resource type="BoxMesh" id="mesh_013"]
+size = Vector3(34, 0.5, 4)
+material = SubResource("mat_deck")
+
+[sub_resource type="BoxShape3D" id="shape_013"]
+size = Vector3(34, 0.5, 4)
+
+[sub_resource type="BoxMesh" id="mesh_014"]
+size = Vector3(34, 1.1, 0.1)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_014"]
+size = Vector3(34, 1.1, 0.1)
+
+[sub_resource type="BoxMesh" id="mesh_015"]
+size = Vector3(0.2, 1.1, 20)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_015"]
+size = Vector3(0.2, 1.1, 20)
+
+[sub_resource type="BoxMesh" id="mesh_016"]
+size = Vector3(30, 1.1, 0.1)
+material = SubResource("mat_rail")
+
+[sub_resource type="BoxShape3D" id="shape_016"]
+size = Vector3(30, 1.1, 0.1)
+
+[node name="Beat2Atrium" type="Node3D"]
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -40)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Floor"]
+mesh = SubResource("mesh_001")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Floor"]
+shape = SubResource("shape_001")
+
+[node name="SouthWallWest" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4, 40, -0.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/SouthWallWest"]
+mesh = SubResource("mesh_002")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/SouthWallWest"]
+shape = SubResource("shape_002")
+
+[node name="SouthWallEast" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4, 40, -0.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/SouthWallEast"]
+mesh = SubResource("mesh_002")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/SouthWallEast"]
+shape = SubResource("shape_002")
+
+[node name="SouthWallLintel" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41.25, -0.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/SouthWallLintel"]
+mesh = SubResource("mesh_003")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/SouthWallLintel"]
+shape = SubResource("shape_003")
+
+[node name="NorthWall" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, -80.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/NorthWall"]
+mesh = SubResource("mesh_004")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/NorthWall"]
+shape = SubResource("shape_004")
+
+[node name="WallEast" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.25, 40, -40.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WallEast"]
+mesh = SubResource("mesh_005")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WallEast"]
+shape = SubResource("shape_005")
+
+[node name="WestWallSouth" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 40, -35.45)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestWallSouth"]
+mesh = SubResource("mesh_006")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WestWallSouth"]
+shape = SubResource("shape_006")
+
+[node name="WestWallNorth" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 40, -76.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestWallNorth"]
+mesh = SubResource("mesh_007")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WestWallNorth"]
+shape = SubResource("shape_007")
+
+[node name="WestWallSill" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 7, -72)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestWallSill"]
+mesh = SubResource("mesh_008")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WestWallSill"]
+shape = SubResource("shape_008")
+
+[node name="WestWallLintel" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.25, 48.3, -72)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/WestWallLintel"]
+mesh = SubResource("mesh_009")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/WestWallLintel"]
+shape = SubResource("shape_009")
+
+[node name="Roof" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80.25, -40.25)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Roof"]
+mesh = SubResource("mesh_010")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Roof"]
+shape = SubResource("shape_010")
+
+[node name="Ramp" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 0.96, -0.28, 0, 0.28, 0.96, 0, 6.695, -45.54)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Ramp"]
+mesh = SubResource("mesh_011")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Ramp"]
+shape = SubResource("shape_011")
+
+[node name="RampRailEast" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 0.96, -0.28, 0, 0.28, 0.96, 2.1, 7.751, -45.232)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RampRailEast"]
+mesh = SubResource("mesh_012")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RampRailEast"]
+shape = SubResource("shape_012")
+
+[node name="RampRailWest" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 0.96, -0.28, 0, 0.28, 0.96, -2.1, 7.751, -45.232)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RampRailWest"]
+mesh = SubResource("mesh_012")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RampRailWest"]
+shape = SubResource("shape_012")
+
+[node name="Walkway" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 13.75, -72)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/Walkway"]
+mesh = SubResource("mesh_013")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/Walkway"]
+shape = SubResource("shape_013")
+
+[node name="RailSouth" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 14.55, -70.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RailSouth"]
+mesh = SubResource("mesh_016")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RailSouth"]
+shape = SubResource("shape_016")
+
+[node name="RailNorth" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 14.55, -74.05)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RailNorth"]
+mesh = SubResource("mesh_014")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RailNorth"]
+shape = SubResource("shape_014")
+
+[node name="RailLegEast" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.55, -10.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RailLegEast"]
+mesh = SubResource("mesh_015")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RailLegEast"]
+shape = SubResource("shape_015")
+
+[node name="RailLegWest" type="StaticBody3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 0.55, -10.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Geometry/RailLegWest"]
+mesh = SubResource("mesh_015")
+
+[node name="Collision" type="CollisionShape3D" parent="Geometry/RailLegWest"]
+shape = SubResource("shape_015")
+
+[node name="EntryBoundary" type="Node3D" parent="."]
+
+[node name="ExitBoundary" type="Node3D" parent="."]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -32.5, 14, -72)
