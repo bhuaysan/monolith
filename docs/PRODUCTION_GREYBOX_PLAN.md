@@ -1,6 +1,6 @@
 # PRODUCTION GREYBOX IMPLEMENTATION PLAN
 
-**Status:** DRAFT — pending Orchestrator review.
+**Status:** APPROVED — implementation in progress (Orchestrator approval 2026-08-29).
 
 **Related documents:**
 
@@ -11,6 +11,28 @@
 - `docs/GREYBOX_SCALE_TEST.md` — completed M1 evidence and M1 validation method
 - `docs/PERFORMANCE_BENCHMARK.md` — benchmark viewpoint types that must remain representable
 - `AGENTS.md` — operating contract (authority model, validation honesty, review gates)
+
+---
+
+## 0. Implementation State (authoritative progress record)
+
+| Phase | State | Commit |
+|---|---|---|
+| 0 — Composition Skeleton | APPROVED | `9acbe2b` |
+| 1 — Corporate Access | APPROVED | `b2c9e80` |
+| 2 — Monumental Atrium | APPROVED | `156809e` |
+| 3 — Elevated Transition | IMPLEMENTED — pending Project Owner review | `71dce7b` |
+| 4 — Final Vista | LOCKED — not authorized | — |
+| 5 — Full Route Integration | LOCKED — not authorized | — |
+
+- Implementation **never auto-advances**: a phase's state changes only by explicit
+  Orchestrator / Project Owner decision, and each phase begins only after the previous
+  phase's stop/review gate (§4–§9 "Gate") is lifted.
+- **Phase 4 is not authorized** until Phase 3 passes its Project Owner review gate. The
+  Phase 3 implementation report exists, but the required human playthrough has not yet
+  passed. Phases 4 and 5 remain LOCKED.
+- Phase 3 moved one Phase-0 boundary under explicit Orchestrator approval; see §3.1 for
+  the amendment and the frozen downstream seam it created.
 
 ---
 
@@ -102,6 +124,57 @@ Rules:
 - **Beat independence.** Each beat scene must load and stand alone (its own collision,
   geometry, and any locally needed visual structure), so a beat can be reviewed in
   isolation.
+
+### 3.1 Boundary-contract amendment — Phase 3 (Orchestrator-approved)
+
+The rule above stands. Phase 3 is the one recorded exception, moved under explicit
+Orchestrator approval: the Phase-0 Beat3→Beat4 endpoint represented placeholder-scale
+Beat-3 geometry and could not accommodate the approved ~185 m production route.
+
+**Frozen Beat2 → Beat3 seam — unchanged:**
+
+```text
+Beat2 Exit global / Beat3 Entry global
+origin: (-32.5, 166, -92)
+basis rows: (0,0,1) (0,1,0) (-1,0,0)
+```
+
+This seam remains unchanged and frozen.
+
+**Historical Phase-0 Beat3 → Beat4 seam — superseded:**
+
+```text
+origin: (-72.5, 166, -62)
+```
+
+This was technically aligned at Phase 0, but it represented the placeholder-scale
+Beat-3 route. It is superseded by the production seam below and must not be reused.
+
+**Phase-3-authorized production seam:**
+
+```text
+Beat3 Exit local
+origin: (-31, 0, -153)
+basis rows: (0,0,1) (0,1,0) (-1,0,0)
+
+Beat3 Exit global / Beat4 Entry global
+origin: (-185.5, 166, -61)
+basis rows: (-1,0,0) (0,1,0) (0,0,-1)
+
+Beat4 instance transform (first_playable.tscn)
+Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -185.5, 166, -61)
+```
+
+Explicitly:
+
+- Beat4's basis/orientation was **unchanged**, and `beat_4_vista.tscn` itself was
+  **not modified**. Only the Beat4 composition-instance origin moved rigidly in
+  `first_playable.tscn`.
+- The new Beat3 Exit == Beat4 Entry seam is the **frozen downstream baseline** for
+  Phase 4 and later work. Future agents must not move it without new Orchestrator
+  approval.
+- This amendment changes no approved layout dimensions and no route; the ~185 m Beat-3
+  budget and all §8 figures stand.
 
 ---
 

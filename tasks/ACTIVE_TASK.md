@@ -1,4 +1,42 @@
-# ACTIVE TASK — Plan First Playable Production Greybox
+# ACTIVE TASK — Review Phase 3: Elevated Transition / Skybridge
+
+**Status:** IMPLEMENTATION COMPLETE — pending Orchestrator technical review and Project Owner playthrough.
+
+**Implementation commit:** `71dce7b` — feat: greybox elevated transition
+
+## Task
+
+The active task is **REVIEW**, not implementation. `docs/PRODUCTION_GREYBOX_PLAN.md` is APPROVED (2026-08-29) and implementation is in progress: Phase 0 Composition Skeleton APPROVED (`9acbe2b`), Phase 1 Corporate Access APPROVED (`b2c9e80`), Phase 2 Monumental Atrium APPROVED (`156809e`), Phase 3 Elevated Transition IMPLEMENTED and awaiting this review gate. Phases 4–5 remain LOCKED (see `docs/PRODUCTION_GREYBOX_PLAN.md` §0).
+
+This review evaluates the implemented Beat 3 (`game/world/first_playable/beat_3_skybridge.tscn`, composed in `first_playable.tscn`) for:
+
+- height/depth feeling
+- exterior exposure
+- bridge length / monotony
+- near-field parallax
+- surrounding complex scale
+- destination readability
+- 3c south-turn clarity
+- 3d receiving/re-entry quality
+- final hero composition still withheld
+- no obvious greybox visual/collision defects
+
+## Constraints
+
+- No implementation work is authorized by this task. In particular, **Phase 4 is NOT AUTHORIZED.**
+- Phase 4 may begin only after explicit Project Owner / Orchestrator approval of Phase 3. Until that gate lifts, `beat_4_vista.tscn` remains the Phase-0 placeholder and no Phase 4 geometry, scenes, or tasks may start.
+- Phase 3 moved the Beat3→Beat4 boundary under explicit Orchestrator approval; the new Beat3 Exit == Beat4 Entry seam (global origin (-185.5, 166, -61), basis rows (-1,0,0) (0,1,0) (0,0,-1)) is the frozen downstream baseline for all later phases. See `docs/PRODUCTION_GREYBOX_PLAN.md` §3.1.
+- Unresolved cross-phase matters — Phase-3 3a ~41 m² vs ~60 m² layout arithmetic, 184.21 m vs ~185 m route approximation, full-route ≥6:00 timing tension, Phase-4 composition, benchmark implementation — remain separate and are not resolved by this review.
+
+## Gate
+
+On review outcome the Orchestrator / Project Owner either lifts the gate (Phase 4 then becomes authorized through a new active task) or records required corrections. Implementation never auto-advances.
+
+---
+
+# ARCHIVED — Plan First Playable Production Greybox (COMPLETED 2026-08-29; superseded by implementation)
+
+> Historical record. Written while planning was the only authorized work; statements below such as "No implementation is authorized" and the plan's former DRAFT status describe that time only and are no longer current state. The plan has since been APPROVED (2026-08-29) and Phases 0–3 implemented — see `docs/PRODUCTION_GREYBOX_PLAN.md` §0.
 
 **Status:** DELIVERABLE COMPLETE — pending Orchestrator review (2026-08-29). `docs/PRODUCTION_GREYBOX_PLAN.md` has been written; documentation/planning work for this task is **complete**. **No implementation is authorized** — no Phase 0 work, no scenes, scripts, assets, or project-settings changes may begin until the Orchestrator reviews and approves the plan. Each approved phase (0–5) will then stop for review before the next begins.
 
